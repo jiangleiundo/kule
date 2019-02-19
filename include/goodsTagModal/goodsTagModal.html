@@ -1,0 +1,52 @@
+<div id="tagModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" ng-bind="goodsModel.modalTitle"></h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">标签名称:</div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="goodsModel.tagName"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="goodsModel.isAdd" ng-repeat="x in idList">
+                    <div class="col-md-2">
+                        <div class="line-h34" ng-show="$index == 0">添加商品:</div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="x.id"/>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <a class="btn btn-default"  ng-show="$index != 0" ng-click="delID($index)"><i class="fa fa-minus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="goodsModel.isAdd">
+                    <div class="col-md-2">
+                        <div class="line-h34"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <a class="btn btn-default" ng-click="addID()"><i class="fa fa-plus"></i> 添加商品</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="submit(goodsModel.tagName, idList)">提交</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->

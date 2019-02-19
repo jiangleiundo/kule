@@ -1,0 +1,88 @@
+/*home*/
+
+
+
+/*search框*/
+.search_select{
+    margin-left: 20px;
+    margin-top: 14px;
+    float: left;
+    width: 200px;
+    height: 36px;
+    line-height: 36px;
+}
+.search_select select{
+    width: 200px;
+    height: 36px;
+}
+.search_txt{
+    margin-left: 20px;
+    margin-top: 14px;
+    padding:0px 14px;
+    float: left;
+    min-width: 36px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.search_input{
+    margin-left: 20px;
+    margin-top: 14px;
+    float: left;
+    width: 180px;
+    height: 36px;
+    line-height: 36px;
+}
+.search_input input{
+    width: 180px;
+    height: 36px;
+}
+
+
+.search_input_long{
+    margin-left: 20px;
+    margin-top: 14px;
+    float: left;
+    width: 85%;
+    height: 36px;
+    line-height: 36px;
+}
+.search_input_long input{
+    width: 100%;
+    height: 36px;
+}
+
+.search_placeholder{
+    float: left;
+    width: 88px;
+    height:40px;
+}
+
+
+/*****upload-img-modal****/
+
+.upload-img{
+    display: inline-block;
+    text-align: center;
+}
+
+.upload-btn{
+    display: inline-block;
+    height: 34px;
+    width: 82px;
+    position: relative;
+    margin-left: 50px;
+    vertical-align: top;
+}
+
+.upload-btn input{
+    position: absolute;
+    top:0;
+    left:0;
+    height: 34px;
+    width: 82px;
+    opacity:0;
+    z-index: 99;
+}
+/**********************************/
+

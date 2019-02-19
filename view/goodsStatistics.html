@@ -1,0 +1,66 @@
+
+<div ng-show="!statisticsModel.isInfoShow">
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 商品统计</div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-click="toExcelStatistics()">导出列表</a></div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-href="{{import}}">导出全部列表</a></div>
+    </div>
+
+    <div class="card-box-search m-t-20 fix">
+        <div class="com_md_lf" style="margin-right: 40px;">上架商品：<span> {{statisticsModel.saleCount}} </span>件</div>
+        <div class="com_md_lf" style="margin-right: 40px;">今日售出：<span> {{statisticsModel.todaySaleCount}} </span>件</div>
+        <div class="com_md_lf" style="margin-right: 40px;">总销售额：<span> {{statisticsModel.saleAmount}} </span>元</div>
+    </div>
+
+    <div class="jl-search-con fix">
+        <div class="jl-select lt">
+            <select class="form-control" ng-model="optionSel">
+                <option value="">商品类型</option>
+                <option value="1">境内</option>
+                <option value="2">境外</option>
+            </select>
+        </div>
+        <div class="lt jl-sel-time">
+            <span>从</span>
+            <div class="jl-sel-input">
+                <input style="background-color: transparent" readonly class="form-control" id="startTime-s" name="txtDate2" onclick="SetDate(this)"/>
+            </div>
+            <span>到</span>
+            <div class="jl-sel-input">
+                <input style="background-color: transparent" readonly class="form-control" id="endTime-s" name="textDate2" onclick="SetDate(this)"/>
+            </div>
+            <div class="jl-sel-input" style="margin-left: 30px;">
+                <input class="form-control" placeholder="请输入关键字搜索" ng-model="statisticsModel.search"/>
+            </div>
+        </div>
+        <div class="jl-search-con-btn lt"><a ng-click="searchGoods(optionSel, statisticsModel.search)" class="btn btn-default"><i class="fa fa-search"></i> 搜 索</a></div>
+    </div>
+
+    <div class="card-box" id="exportable5">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>序号</td>
+                <td>商品分类</td>
+                <td>售出(件)</td>
+                <td>销售额(元)</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in statisticsModel.modelArr">
+                <td ng-bind="$index + 1"></td>
+                <td>{{item.cat_name}}</td>
+                <td>{{item.total_sale_num}}</td>
+                <td>{{item.total_sale_amount}}</td>
+                <td><a class="btn btn-default" ng-click="checkInfo(item.cat_id)">查看</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div ng-include="'include/page/page.html'" ng-show="!statisticsModel.isInfoShow"></div>
+
+<!--详情-->
+<div ng-include="'view/goodsStatisticsInfo.html'" ng-show="statisticsModel.isInfoShow"></div>

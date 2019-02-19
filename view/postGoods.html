@@ -1,0 +1,223 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 商品发布</div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-click="backToList()">返回</a></div>
+</div>
+
+<div class="jl-search-con-s m-g-t-20 fix">
+    <div class="jl-sel-btn lt"><a ng-class="{true: 'btn btn-default', false: 'btn btn-white'}[!goodsInfoModel.showClassify]" ng-click="showGoodsInfo()">基本信息</a></div>
+    <div class="jl-sel-btn lt" ng-show="goodsInfoModel.showClassifyBtn"><a ng-class="{true: 'btn btn-default', false: 'btn btn-white'}[goodsInfoModel.showClassify]" ng-click="showGoodsClassify()">商品分类</a></div>
+    <div class="jl-sel-btn rt" ng-show="!goodsInfoModel.showClassify"><a class="btn btn-default" ng-click="clickSubmit(goodsInfoModel.goodsSingleObj.goods_name)">提交数据</a></div>
+</div>
+
+<div class="post-box-1" ng-show="!goodsInfoModel.showClassify">
+    <!--发布商品填写信息处/s-->
+    <div class="post-goods-top">
+        <div class="post-goods-title">商品基本信息</div>
+        <div class="fix m-g-b-20">
+            <div class="post-item-2">
+                <label class="label-font-normal">商品名称</label>
+                <input class="form-control" ng-model="goodsInfoModel.goodsSingleObj.goods_name"/>
+            </div>
+            <div class="post-item-1">
+                <label class="label-font-normal">商品类型</label>
+                <select class="form-control" ng-model="goodsStyleSel" ng-change="selGoodsStyle(goodsStyleSel)" ng-options="a.id as a.name for a in optionModel2.goodsStyleArr">
+                    <option value="">选择商品类型</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="fix m-g-b-20">
+            <div class="post-item-1">
+                <label class="label-font-normal">一级分类</label>
+                <select class="form-control" ng-model="classOneSel" ng-change="oneSelChange(classOneSel)" ng-options="a.id as a.name for a in optionModel2.classifyOneArr">
+                    <option value="">选择一级分类</option>
+                </select>
+            </div>
+            <div class="post-item-1">
+                <label class="label-font-normal">二级级分类</label>
+                <select class="form-control" ng-model="classTwoSel" ng-change="twoSelChange(classTwoSel)" ng-options="a.id as a.name for a in optionModel2.classifyTwoArr">
+                    <option value="">选择二级分类</option>
+                </select>
+            </div>
+            <div class="post-item-1">
+                <label class="label-font-normal">三级分类</label>
+                <select class="form-control" ng-model="classThrSel" ng-change="thrSelChange(classThrSel)" ng-options="a.id as a.name for a in optionModel2.classifyThrArr">
+                    <option value="">选择三级分类</option>
+                </select>
+            </div>
+            <div class="post-item-1">
+                <label class="label-font-normal">商品品牌</label>
+                <select class="form-control" ng-model="brandSel2" ng-change="selBrand2(brandSel2)" ng-options="a.id as a.name for a in optionModel2.brandArr">
+                    <option value="">选择品牌</option>
+                </select>
+            </div>
+            <div class="post-item-1">
+                <label class="label-font-normal">商品标签</label>
+                <div class="sel-tags">
+                    <input class="form-control" ng-model="searchTag" ng-focus="focus()" ng-blur="blur()"/>
+                    <ul class="tag_sel_box">
+                        <li ng-repeat="item in optionModel2.tagsArr | filter:searchTag" ng-click="selectTag(item.tagname, item.tag_id)">{{item.tagname}}</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!--发布商品填写信息处/e-->
+
+    <!--发布商品上传图片处---(商品图片)---/s-->
+    <div class="m-g-t-10 fffbacground">
+        <div class="post-goods-title">上传商品图片</div>
+        <div class="upload-goods-img">
+            <div class="fix goods-pics-box">
+                <div class="goods-img" ng-repeat="item in goodsInfoModel.goodsPics track by $index">
+                    <div class="del-img-icon" ng-click="delPics($index)">—</div>
+                    <img ng-src="{{item.picUrl}}"/>
+                </div>
+
+                <div class="upload-icon">
+                    <form method="post" enctype="multipart/form-data" id="Form_3" action=""  class="upload-goods-form">
+                        <img src="images/addimg.png"/>
+                        <input  type="file" id="inupf_3" name="file" ng-click="upLoadImg()" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--发布商品上传图片处---(商品图片)---/e-->
+
+    <!--发布商品上传图片处---(图文)---/s-->
+    <div class="m-g-t-10 fffbacground">
+        <div class="post-goods-title">上传图文详情</div>
+        <div class="upload-goods-img">
+            <div class="fix goods-pics-box">
+                <div class="goods-img" ng-repeat="item in goodsInfoModel.wordsPics track by $index">
+                    <div class="del-img-icon" ng-click="delPics2($index)">—</div>
+                    <img ng-src="{{item.picUrl}}"/>
+                </div>
+
+                <div class="upload-icon">
+                    <form  method="post" enctype="multipart/form-data" id="Form_4" action="" class="upload-goods-form">
+                        <img src="images/addimg.png"/>
+                        <input  type="file" id="inupf_4" name="file" ng-click="upLoadImg2()" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--发布商品上传图片处---(图文)---/e-->
+</div>
+
+<div class="" ng-show="goodsInfoModel.showClassify">
+    <!--商品分类设置，设置SKU标题/s-->
+    <div class="card-box m-g-t-20">
+        <div class="post-goods-title fix m-g-b-10">
+            <div class="lt">添加商品分类</div>
+            <div class="lt" style="margin:0 20px;"><input  class="form-control" ng-model="postModel.attrTitle1" placeholder="输入一级标题名"/></div>
+            <div class="lt" style="margin:0 20px 0 0;">
+                <select ng-model="postModel.attrType1" ng-options="a.id as a.name for a in postModel.attrTypeArr" class="form-control"></select>
+            </div>
+            <div class="lt"><a class="btn btn-default" ng-click="addClassTitle(postModel.attrTitle1, 1)">{{postModel.isAttrType1Exist == true ?'修改':'添加'}}</a></div>
+            <div class="lt" style="margin-left: 20px;" ng-if="postModel.isAttrType1Exist"><a class="btn btn-danger" ng-click="delAttrNameClick(1)">删除</a></div>
+            <div class="rt" id="addBtnClass1"><a class="btn btn-default" ng-click="addAttr(1)">添加一级分类</a></div>
+        </div>
+        <table class="table" id="tableOne">
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>一级标题</td>
+                    <td>分类名称</td>
+                    <td>图片</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in postModel.attrValListArr">
+                    <td ng-bind="$index + 1"></td>
+                    <td ng-bind="postModel.attrTitle1"></td>
+                    <td ng-bind="item.attr_value"></td>
+                    <td><img height="70px;" ng-hide="item.attr_img == ''" ng-src="{{item.attr_img}}"/></td>
+                    <td>
+                        <a class="btn btn-default" ng-click="modifyAttr(item.attr_symbol_id, item.attr_id, 1, item.attr_name, item.attr_value, item.attr_img)">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-danger" ng-click="delAttr(item.attr_symbol_id)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="card-box m-g-t-20">
+        <div class="post-goods-title fix m-g-b-10">
+            <div class="lt">添加商品分类</div>
+            <div class="lt" style="margin:0 20px;"><input  class="form-control" ng-model="postModel.attrTitle2" placeholder="输入二级标题名"/></div>
+            <div class="lt" style="margin:0 20px 0 0;">
+                <select ng-model="postModel.attrType2" ng-options="a.id as a.name for a in postModel.attrTypeArr" class="form-control"></select>
+            </div>
+            <div class="lt"><a class="btn btn-default" ng-click="addClassTitle(postModel.attrTitle2, 2)">{{postModel.isAttrType2Exist == true ?'修改':'添加'}}</a></div>
+            <div class="lt" style="margin-left: 20px;" ng-if="postModel.isAttrType2Exist"><a class="btn btn-danger" ng-click="delAttrNameClick(2)">删除</a></div>
+            <div class="rt" id="addBtnClass2"><a class="btn btn-default" ng-click="addAttr(2)">添加二级分类</a></div>
+        </div>
+        <table class="table" id="tableTwo">
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>二级标题</td>
+                    <td>分类名称</td>
+                    <td>图片</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in postModel.attrValListArr2">
+                    <td ng-bind="$index + 1"></td>
+                    <td ng-bind="postModel.attrTitle2"></td>
+                    <td ng-bind="item.attr_value"></td>
+                    <td><img height="70px;"  ng-hide="item.attr_img == ''" ng-src="{{item.attr_img}}"/></td>
+                    <td>
+                        <a class="btn btn-default" ng-click="modifyAttr(item.attr_symbol_id, item.attr_id, 2, item.attr_name, item.attr_value, item.attr_img)">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="btn btn-danger" ng-click="delAttr(item.attr_symbol_id)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="card-box m-g-t-20" id="tableDetial">
+        <div class="post-goods-title fix m-g-b-10">
+            <div class="lt">修改分类详情</div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>价格（元）</td>
+                    <td>库存</td>
+                    <td>重量（克）</td>
+                    <td ng-if="postModel.curGoodsType == '2'">税率</td>
+                    <td ng-if="postModel.curGoodsType == '2'">货号</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in postModel.goodsSkuArr">
+                    <td ng-bind="$index + 1"></td>
+                    <td ng-bind="item.goods_sku_name"></td>
+                    <td style="width: 15%"><input type="text" onkeyup="value=value.replace(/[^\d.]/g,'')" class="form-control" ng-model="item.price"/></td>
+                    <td style="width: 15%"><input type="text" onkeyup="value=value.replace(/[^\d.]/g,'')" class="form-control" ng-model="item.stock"/></td>
+                    <td style="width: 15%"><input type="text" onkeyup="value=value.replace(/[^\d.]/g,'')" class="form-control" ng-model="item.weight"/></td>
+                    <td style="width: 15%" ng-if="postModel.curGoodsType == '2'"><input type="text" onkeyup="value=value.replace(/[^\d.]/g,'')" class="form-control" ng-model="item.taxrate"/></td>
+                    <td style="width: 15%" ng-if="postModel.curGoodsType == '2'"><input type="text" class="form-control" ng-model="item.goods_sn"/></td>
+                    <td><a class="btn btn-default" ng-click="modifySku(item.attr_symbol_path, item.sku_id, item.price, item.stock, item.weight, $index, item.taxrate, item.goods_sn)">提交</a></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <!--商品分类设置，设置SKU标题/e-->
+</div>
+
+<div ng-include="'include/postGoodsModal/postGoodsModal.html'"></div>

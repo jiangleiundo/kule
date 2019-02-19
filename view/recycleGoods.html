@@ -1,0 +1,77 @@
+
+<div>
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 商品回收站</div>
+    </div>
+
+    <div class="card-box-search m-t-20 fix">
+        <div class="com_md_lf">
+            <select class="form-control" ng-model="globalSel" ng-change="selGlobal(globalSel)" ng-options="a.id as a.name for a in optionModel.globalArr">
+                <option value="">全球商品</option>
+            </select>
+        </div>
+        <div class="com_md_lf">
+            <select class="form-control" ng-model="brandSel" ng-change="selBrand(brandSel)" ng-options="a.id as a.name for a in optionModel.brandArr">
+                <option value="">所有品牌</option>
+            </select>
+        </div>
+        <div class="com_md_lf">
+            <select class="form-control" ng-model="classifySel" ng-change="selClassify(classifySel)" ng-options="a.id as a.name for a in optionModel.classifyArr">
+                <option value="">全部分类</option>
+            </select>
+        </div>
+        <div class="com_md_lf">
+            <select class="form-control" ng-model="statusSel" ng-change="selStatus(statusSel)" ng-options="a.id as a.name for a in optionModel.statusArr">
+                <option value="">全部理由</option>
+            </select>
+        </div>
+        <div class="com_md_lf"><input type="text" class="form-control" placeholder="请输入关键字查找" ng-model="goodsListModel.search" /></div>
+        <div class="com_md_lf"><a class="btn btn-default" ng-click="search(goodsListModel.search)"><i class="md-search"></i> 搜索</a></div>
+        <div class="com_md_rt"><a class="btn btn-default" ng-click="handleDeal(handleSel)">确定</a></div>
+        <div class="com_md_rt">
+            <select class="form-control"ng-model="handleSel" ng-change="selHandle(handleSel)" ng-options="a.id as a.name for a in optionModel.handleAllArr">
+                <option value="">批量操作</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="card-box" id="exportGoodsTable">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>商品名称</td>
+                <td>货号</td>
+                <td>价格</td>
+                <td>库存</td>
+                <td>理由</td>
+                <td>操作</td>
+                <td><div class="all_sel">全选</div> <div class="all_sel" ng-click="allSel()"><span ng-class="{true:'has_sel', false:'un_sel'}[goodsListModel.selectAll]"></span></div></td>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            <tr ng-repeat="item in goodsListModel.modelArr">
+                <td width="20%">
+                    <div style="display: inline-block" ng-style="item.style"><a class="btn btn-white" ng-click="switchCategory(item)"><i ng-class="{true : 'fa fa-plus-square-o', false : 'fa fa-minus-square-o'}[!item.isOpen]"></i></a></div>
+                    <div style="display: inline-block;" ng-bind="item.goodsName"></div>
+                </td>
+                <td ng-bind="item.goodsSn"></td>
+                <td ng-bind="item.price"></td>
+                <td ng-bind="item.stock" class='stock-red-{{item.stock < 600}}'></td>
+                <td ><span ng-bind="item.offSaleReason"></span></td>
+                <td >
+                    <a ng-show="item.offSaleReason == '人工下架'" class="btn btn-default" ng-click = "modifyGoods(item.goodsId, 1)">上架</a>
+                    <a ng-show="(item.offSaleReason == '' || item.offSaleReason == '库存不足') && item.level != 0" class="btn btn-default" ng-click = "modifyGoods(item.skuId, 2)">编辑</a>
+                    <a ng-show="item.offSaleReason == '活动到期'" class="btn btn-default" ng-click = "modifyGoods(item.goodsId, 1)">编辑</a>
+                </td>
+                <td><div ng-show="item.level == 0" class="all_sel" ng-click="oneSel(item.goodsId)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-include="'include/page/page.html'"></div>
+</div>
+
+<div ng-include="'include/recycleModal/recycleModal.html'"></div>
+

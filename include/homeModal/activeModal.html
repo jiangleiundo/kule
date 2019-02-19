@@ -1,0 +1,88 @@
+<div id="activeModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" ng-bind="activeModel.modalTitle"></h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">跳转类型:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <select class="form-control" ng-model="activeModel.curType" ng-options="a.id as a.name for a in activeModel.optionArr"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="activeModel.curType == '0'">
+                    <div class="col-md-2">
+                        <div class="line-h34">关联URL:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="activeModel.activeParams" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="activeModel.curType == '2'">
+                    <div class="col-md-2">
+                        <div class="line-h34">关键字:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="activeModel.activeParams2" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="activeModel.curType == '1'">
+                    <div class="col-md-2">
+                        <div class="line-h34">跳转图:</div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <form method="post" enctype="multipart/form-data" id="Form_11" action="" class="upload-form">
+                                <div class="upload-img" style="border: 1px solid #ddd; min-height: 100px; width: 300px; padding:10px;">
+                                    <img style="vertical-align: baseline; max-width: 280px;" ng-src="{{showPicUrl}}"/>
+                                </div>
+                                <div class="upload-btn">
+                                    <a class="btn btn-default">上传图片</a>
+                                    <input type="file" class="up_file" id="inupf_11" name="file"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">活动图:</div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <form method="post" enctype="multipart/form-data" id="Form_12" action="" class="upload-form">
+                                <div class="upload-img" style="border: 1px solid #ddd; min-height: 100px; width: 300px; padding:10px;">
+                                    <img style="vertical-align: baseline; max-width: 280px" ng-src="{{showPicUrl2}}"/>
+                                </div>
+                                <div class="upload-btn">
+                                    <a class="btn btn-default">上传图片</a>
+                                    <input type="file" class="up_file" id="inupf_12" name="file"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="activeSubmit(activeModel.curType, activeModel.activeParams, activeModel.activeParams2)">提交</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->

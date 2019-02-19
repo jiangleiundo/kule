@@ -1,0 +1,35 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 用户管理</div>
+</div>
+
+<div class="card-box m-t-20">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>序号</td>
+            <td>用户名</td>
+            <td>密码</td>
+            <td>类型</td>
+            <td>注册时间</td>
+            <td>最近登录</td>
+            <td>修改</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td ng-bind="adminModel.ModelInfo.username"></td>
+            <td ng-bind="adminModel.ModelInfo.password"></td>
+            <td >普通管理员</td>
+            <td ng-bind="adminModel.ModelInfo.createtime * 1000 | date : 'yyyy-MM-dd HH:mm:ss'"></td>
+            <td >
+                <span>{{adminModel.ModelInfo.lastLoginTime * 1000 | date : 'yyyy-MM-dd HH:mm:ss'}}</span>
+            </td>
+            <td><a class="btn btn-warning" ng-click = "modAdmin(adminModel.ModelInfo.id, adminModel.ModelInfo.username, adminModel.ModelInfo.password)">修改</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/adminModal/adminModal.html'"></div>
+

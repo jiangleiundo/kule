@@ -1,0 +1,185 @@
+.post-goods-top{
+    background: #fff;
+    padding-bottom: 10px;
+}
+.post-goods-title{
+    height:34px;
+    line-height: 34px;
+    /*font-weight: 600;*/
+    font-size: 14px;
+}
+.post-goods-level{
+    height: 60px;
+    margin:10px 0px;
+}
+.goods-name{
+    width:56.5%;
+    float: left;
+}
+.goods-name-input{
+    width:100%;
+    height: 40px;
+}
+.goods-name-input input{
+    width:100%;
+    height: 40px;
+}
+.title-name{
+    width:100%;
+    height:30px;
+    line-height: 30px;
+}
+.goods-info{
+    width:17.5%;
+    float: left;
+    margin-right: 2%;
+}
+.goods-info-input{
+    width:100%;
+    height: 40px;
+}
+.goods-info-input input{
+    width:100%;
+    height: 40px;
+}
+.goods-info-input select{
+    width:100%;
+    height: 40px;
+}
+
+
+.fffbacground{
+    background: #fff;
+}
+
+.upload-goods-img{
+   min-height: 160px;
+}
+.upload-text-img{
+    height: 160px;
+}
+.goods-img{
+    width: 120px;
+    height: 120px;
+    margin: 20px;
+    float: left;
+    border:1px dashed #bbb;
+    position: relative;
+}
+.goods-img img{
+    width: 100%;
+    height:100%;
+}
+.del-img-icon{
+    position: absolute;
+    top:0;
+    right:0;
+    height: 20px;
+    width: 20px;
+    line-height: 18px;
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    background: red;
+    border-radius: 50%;
+    margin-top: -6px;
+    margin-right: -6px;
+    cursor: pointer;
+}
+
+.upload-icon{
+    width: 120px;
+    height: 120px;
+    margin: 20px;
+    /*display: inline-block;*/
+    vertical-align: top;
+    cursor: pointer;
+    float: left;
+}
+
+.goods-pics-box{
+    display: inline-block;
+}
+.upload-goods-form{
+    border:1px dashed #bbb;
+    width: 120px;
+    height: 120px;
+    position: relative;
+
+}
+.upload-goods-form > input{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 120px;
+    height: 120px;
+    opacity: 0;
+    cursor: pointer;
+}
+.upload-goods-form img{
+    width:100%;
+    height:100%;
+}
+
+
+/*********发布商品。设置类型*********/
+
+.label-font-normal{
+    font-weight: normal;
+}
+
+.post-item-0{
+    float:left;
+    width:56.5%;
+    margin-right: 2%;
+}
+.post-item-1{
+    float:left;
+    width:17.5%;
+    margin-right: 2%;
+}
+.post-item-2{
+    float:left;
+    width:37%;
+    margin-right: 2%;
+}
+.post-box-1{
+    padding:20px;
+    border: 1px solid rgba(54, 64, 74, 0.1);
+    border-top: none;
+}
+
+.sel-tags{
+    position: relative;
+}
+
+
+
+ul.tag_sel_box{
+    position:absolute;
+    top:34px;
+    left:0;
+    z-index: 99999;
+    width:100%;
+    max-height: 300px;
+    min-height: 34px;
+    overflow-y: scroll;
+    border:1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    display: none;
+}
+ul.tag_sel_box li{
+    padding-left:5px;
+    height:24px;
+    line-height: 24px;
+}
+ul.tag_sel_box li:hover{
+    background: #3C8DBC;
+    color:#fff;
+    cursor: pointer;
+}
+
+.stock-red-true{
+    color: #ff7347;
+}

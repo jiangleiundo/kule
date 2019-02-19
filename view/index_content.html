@@ -1,0 +1,94 @@
+<div class="com_top">
+	<div class="com_top_lf"><i class=" md-apps"></i> 欢迎登录酷乐电商后台管理系统</div>
+</div>
+
+<div class="card-box m-g-t-20">
+	<table class="table">
+        <thead>
+            <tr>
+                <td style="font-weight: 500" colspan="4">订单状态</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td width="12%;">待发货订单</td>
+                <td width="38%;">
+                    <span class='stock-red-{{true}}'>{{homeModel.orderStatusData.waitSendCount}}</span>
+                </td>
+                <td width="12%;">退款申请</td>
+                <td width="38%">
+                    <span class='stock-red-{{true}}'>{{homeModel.orderStatusData.applyRejectCount}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>未确认订单</td>
+                <td>{{homeModel.orderStatusData.waitReceiveCount}}</td>
+                <td>已成交订单</td>
+                <td>{{homeModel.orderStatusData.finishCount}}</td>
+            </tr>
+            <tr>
+                <td>待支付订单</td>
+                <td>{{homeModel.orderStatusData.waitPayCount}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+	</table>
+
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+        <tr>
+            <td style="font-weight: 500" colspan="4">境内商品统计</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td width="12%;">上架商品</td>
+            <td width="38%;">{{homeModel.onShoreGoodsData.onSaleGoodsCount}}</td>
+            <td width="12%;">库存告急</td>
+            <td width="38%">
+                <span class='stock-red-{{true}}'>{{homeModel.onShoreGoodsData.stockNotEnoughCount}}</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+        <tr>
+            <td style="font-weight: 500" colspan="4">境外商品统计</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td width="12%;">上架商品</td>
+            <td width="38%;">{{homeModel.offShoreGoodsData.onSaleGoodsCount}}</td>
+            <td width="12%;">库存告急</td>
+            <td width="38%"><span class='stock-red-{{true}}'>{{homeModel.offShoreGoodsData.stockNotEnoughCount}}</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card-box m-g-t-40">
+    <table class="table">
+        <thead>
+        <tr>
+            <td style="font-weight: 500" colspan="4">网站统计</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td width="12%">今日访问数</td>
+            <td width="38%;">{{homeModel.website.pageView}}</td>
+            <td width="12%;"></td>
+            <td width="38%"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

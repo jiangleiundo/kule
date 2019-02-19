@@ -1,0 +1,114 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 楼层管理</div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-click="floorBack()"> 返回</a></div>
+</div>
+
+<div class="jl-search-con m-g-t-20">
+    <ul class="floor-tab fix">
+        <li class="floor-tab-li" ng-repeat="tab in tabs"
+            ng-class="{tabActive:isActiveTab(tab.url)}"
+            ng-click="onClickTab(tab)">
+            {{tab.title}}
+        </li>
+    </ul>
+</div>
+
+<div class="card-box">
+    <div ng-include="currentTab"></div>
+</div>
+
+<script type="text/ng-template" id="one">
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td width="30%">名字</td>
+                    <td width="30%">颜色</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="form-control" ng-model="themeModel.name"/></td>
+                    <td><input class="form-control" ng-model="themeModel.color"/></td>
+                    <td><a class="btn btn-default" ng-click="themeSubmit(themeModel.name, themeModel.color)">确定</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</script>
+
+<script type="text/ng-template" id="two">
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td width="10%;">活动栏</td>
+                    <td width="25%;">图片</td>
+                    <td width="10%;">跳转类型</td>
+                    <td width="35%;">跳转参数</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in activeModel.modelArr track by $index">
+                    <td>栏位 {{$index + 1}}</td>
+                    <td><img height="100px;" ng-src="{{item.icon}}" ng-if="item"/></td>
+                    <td>{{item.activityTypeCopy}}</td>
+                    <td style="table-layout:fixed;word-break:break-all;">{{item.param}}</td>
+                    <td>
+                        <a class="btn btn-default" ng-if="item" ng-click="modifyActive($index, item.type, item.param, item.icon)">修改</a>
+                        <a class="btn btn-default" ng-if="!item" ng-click="addActive($index)">添加</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-include="'include/homeModal/activeModal.html'"></div>
+</script>
+
+<script type="text/ng-template" id="three">
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td width="30%">活动栏</td>
+                    <td width="30%">设置关键字</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in labelModel.modelArr track by $index">
+                    <td>栏位{{$index + 1}}</td>
+                    <td><input class="form-control" ng-model="item"/></td>
+                    <td><a class="btn btn-default" ng-click="labelSubmit($index, item)">确定</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</script>
+
+<script type="text/ng-template" id="four">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <td width="30%">名字</td>
+                <td width="30%">设置</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in brandModel.modelArr track by $index">
+                <td>栏位{{$index + 1}}</td>
+                <td>
+                    <select class="form-control" ng-model="item.brand_id" ng-options="a.id as a.name for a in brandModel.optionArr">
+                        <option value="">所有品牌</option>
+                    </select>
+                </td>
+                <td><a class="btn btn-default" ng-click="brandSubmit($index, item.brand_id)">确定</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</script>

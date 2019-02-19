@@ -1,0 +1,24 @@
+<div class="com_top">
+	<div class="com_top_lf"><i class=" md-apps"></i> 修改密码</div>
+</div>
+
+<div class="mod_pwd">
+	<div class="mod_pwd_item">
+		<div class="mod_pwd_item_lf">请输入旧密码：</div>
+		<div class="mod_pwd_item_rg"><input type="text" class="form-control" ng-model="pwdModel.oldPwd" /></div>
+		<div class="mod_pwd_item_tip">*</div>
+	</div>
+	<div class="mod_pwd_item">
+		<div class="mod_pwd_item_lf">请输入新密码：</div>
+		<div class="mod_pwd_item_rg"><input type="text" class="form-control"  ng-model="pwdModel.newPwd"/></div>
+		<div class="mod_pwd_item_tip">*</div>
+	</div>
+	<div class="mod_pwd_item">
+		<div class="mod_pwd_item_lf">再次输入新密码：</div>
+		<div class="mod_pwd_item_rg"><input type="text" class="form-control"  ng-model="pwdModel.newPwd2"/></div>
+		<div class="mod_pwd_item_tip">*</div>
+	</div>
+	<div class="mod_pwd_item">
+		<div class="mod_pwd_btn"><a class="btn btn-warning" ng-click="submitChange(pwdModel.oldPwd, pwdModel.newPwd, pwdModel.newPwd2)">提交</a></div>
+	</div>
+</div>

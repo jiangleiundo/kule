@@ -1,0 +1,36 @@
+<div>
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 商品标签</div>
+        <div class="com_top_rg"><a class="btn btn-danger" ng-click="delTags()"><i class="md-clear"></i> 删除</a></div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-click="addTag()"><i class="md-add"></i> 添加</a></div>
+    </div>
+
+    <div class="card-box m-g-t-20">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>序号</td>
+                <td>标签名</td>
+                <td>搜索热度</td>
+                <td>商品数量</td>
+                <td>操作</td>
+                <td><div class="all_sel">全选</div> <div class="all_sel" ng-click="allSel()"><span ng-class="{true:'has_sel', false:'un_sel'}[goodsModel.selectAll]"></span></div></td>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            <tr ng-repeat="item in goodsModel.modelArr">
+                <td ng-bind="$index + 1 + (page.nowPage - 1) * page.selectPageNum"></td>
+                <td ng-bind="item.name"></td>
+                <td ng-bind="item.hotSearch"></td>
+                <td ng-bind="item.goodsNum"></td>
+                <td><a class="btn btn-warning" ng-click = "modify(item.id)">修改</a></td>
+                <td><div class="all_sel" ng-click="oneSel(item.id)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-include="'include/page/page.html'"></div>
+</div>
+
+<div ng-include="'include/goodsTagModal/goodsTagModal.html'"></div>
+

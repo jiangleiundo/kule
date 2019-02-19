@@ -1,0 +1,91 @@
+<div ng-show="!orderModel.isShowDetial">
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 订单搜索</div>
+        <div class="com_top_rg" ng-show="!orderModel.isSearchShow"><a class="btn btn-default" ng-click="backToSearch()"> 返 回</a></div>
+        <div class="com_top_rg" ng-show="!orderModel.isSearchShow"><a class="btn btn-default" ng-click="exportData2()"> 导出订单</a></div>
+    </div>
+
+    <div class="card-box m-g-t-20" ng-show="orderModel.isSearchShow">
+        <div class="jl-search-content">
+            <div class="jl-order-item">
+                <span>订单号：</span>
+                <div class="jl-search-box">
+                    <input class="form-control" ng-model="orderModel.orderNo"/>
+                </div>
+            </div>
+            <div class="jl-order-item">
+                <span>购买人账号：</span>
+                <div class="jl-search-box">
+                    <input class="form-control" ng-model="orderModel.orderBuyer"/>
+                </div>
+            </div>
+            <div class="jl-order-item">
+                <span>收货人：</span>
+                <div class="jl-search-box">
+                    <input class="form-control" ng-model="orderModel.orderAccept"/>
+                </div>
+            </div>
+            <div class="jl-order-item">
+                <span>手机：</span>
+                <div class="jl-search-box">
+                    <input class="form-control" ng-model="orderModel.orderPhone"/>
+                </div>
+            </div>
+            <div class="jl-order-item">
+                <span></span>
+                <div class="jl-search-btn">
+                    <a class="btn btn-default" ng-click="searchOrder(orderModel.orderNo, orderModel.orderBuyer, orderModel.orderAccept, orderModel.orderPhone)">搜 索</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jl-search-detials" ng-show="!orderModel.isSearchShow">
+        <div class="card-box m-g-t-20" id="exportable2">
+            <table class="table">
+                <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>订单号</td>
+                    <td>下单用户</td>
+                    <td>下单时间</td>
+                    <td>收货信息</td>
+                    <td>总金额</td>
+                    <td>订单状态</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in orderModel.orderListArr">
+                    <td ng-bind="$index + 1 + (page.nowPage - 1)*page.selectPageNum"></td>
+                    <td ng-bind="item.orderNo"></td>
+                    <td ng-bind="item.nickName"></td>
+                    <td ng-bind="item.orderTime"></td>
+                    <td ng-bind="item.addressInfo"></td>
+                    <td><span ng-bind="item.totalPrice"></span><span style="font-size: 10px">(含运费{{item.carriage}}元)</span></td>
+                    <td ng-bind="item.orderStatusCopy"></td>
+                    <td>
+                        <div style="margin-bottom: 6px;"><a class="btn btn-default" ng-click="checkDetial(item.orderNo, $index)">查看详情</a></div>
+                        <div ng-show="item.orderStatus == '2'"><a class="btn btn-success" ng-click="deliverGoods(item.orderNo)">发货</a></div>
+                        <div ng-show="item.orderStatus == '6'"><a class="btn btn-warning" ng-click="refundModel(item.orderNo)">审核</a></div>
+                        <div ng-show="item.orderStatus == '8'"><a class="btn btn-danger" ng-click="payBack(item.orderNo)">退款</a></div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div ng-include="'include/page/page.html'"></div>
+    </div>
+</div>
+
+<div ng-include="'include/orderModal/orderModal.html'"></div>
+
+<!--详情-->
+<div ng-include="'view/jl_view/orderDetials.html'" ng-show="orderModel.isShowDetial && orderModel.isShowInfo"></div>
+
+<!--发货-->
+<div ng-include="'view/jl_view/deliverGoods.html'" ng-show="orderModel.isShowDetial && orderModel.isShowDeliver"></div>
+
+<!--审核-->
+<div ng-include="'view/jl_view/returnRefund.html'" ng-show="orderModel.isShowDetial && orderModel.isRefund"></div>

@@ -1,0 +1,27 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 商品统计详情</div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-click="detialBack()"> 返回</a></div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>商品名称</td>
+                <td>今日售出(件)</td>
+                <td>销售额(元)</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in statisticsInfoModel.modelArr">
+                <td ng-bind="$index + 1 + (page.nowPage - 1)*page.selectPageNum"></td>
+                <td>{{item.goods_name}}</td>
+                <td>{{item.total_sale_num}}</td>
+                <td>{{item.total_sale_amount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/page/page.html'"></div>

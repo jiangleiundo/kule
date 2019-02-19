@@ -1,0 +1,120 @@
+<div id="addCouponModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">新增优惠卷</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">名称:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="couponModel.name" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">优惠类型:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <select class="form-control" ng-model="optionSel3" ng-options="a.id as a.name for a in couponModel.optionStatusArr">
+                                <option value=''>选择类型</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="optionSel3 == '1'">
+                    <div class="col-md-2">
+                        <div class="line-h34">物品:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="text" onkeyup="value=value.replace(/[^\d.]/g,'')" class="form-control" ng-model="couponModel.goodsID" placeholder="输入对应物品ID" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="optionSel3 == '2'">
+                    <div class="col-md-2">
+                        <div class="line-h34">触发上线:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="text" onkeyup="value=value.replace(/[^\d.]/g,'')" class="form-control" ng-model="couponModel.upperLine" placeholder="输入减免金额" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-hide="optionSel3 == '1'">
+                    <div class="col-md-2">
+                        <div class="line-h34">力度:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="couponModel.intensity" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-hide="couponModel.isChecked == '1'">
+                    <div class="col-md-2">
+                        <div class="line-h34">数量:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input id="coupon-num" type="text" onkeyup="value=value.replace(/[^\d.]/g,'')" class="form-control" ng-model="couponModel.num"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">开始时间:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" style="background-color: transparent" readonly class="form-control" id="sTime-coupon" ng-model="couponModel.startTime" name="textDate" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">截止时间:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" style="background-color: transparent" readonly class="form-control" id="eTime-coupon" ng-model="couponModel.endTime" name="textDate" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34"></div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                        	<div class="line-h34"><input style="vertical-align: -2px;" name="tt"  type="radio" ng-model="couponModel.isChecked" value="2"/> 默认选项</div>
+                            <div class="line-h34"><input style="vertical-align: -2px;" name="tt"  type="radio" ng-model="couponModel.isChecked" value="1"/> 发送给所有已注册用户</div>
+                            <div class="line-h34"><input style="vertical-align: -2px;" name="tt"  type="radio" ng-model="couponModel.isChecked" value="0"/> 随机发送</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="modCouponSubmit(optionSel3)">提交</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->

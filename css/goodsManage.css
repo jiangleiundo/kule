@@ -1,0 +1,47 @@
+.lt{
+    float:left;
+}
+
+.rt{
+    float:right;
+}
+
+.goods-con{
+    padding:20px;
+}
+
+.goods-con-item{
+    height: 34px;
+    line-height: 34px;
+    padding:10px 0;
+}
+
+.goods-con-item-lt{
+    width:140px;
+}
+
+.goods-con-item-md{
+    width:260px;
+}
+
+.goods-con-btn{
+    padding:20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

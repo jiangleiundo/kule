@@ -1,0 +1,44 @@
+<div ng-show="noticeModel.isListShow">
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 公告列表</div>
+        <div class="com_top_rg"><a class="btn btn-danger" ng-click="delNotice()"><i class=" md-clear"></i> 删除</a></div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-click="addNotice()"><i class=" md-add"></i> 添加文章</a></div>
+    </div>
+
+    <div class="card-box m-g-t-20">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>序号</td>
+                <td>标题</td>
+                <td>创建时间</td>
+                <td>发布时间</td>
+                <td>操作</td>
+                <td><div class="all_sel">全选</div> <div class="all_sel" ng-click="allSel()"><span ng-class="{true:'has_sel', false:'un_sel'}[noticeModel.selectAll]"></span></div></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in noticeModel.modelArr">
+                <td>{{$index + 1 + (page.nowPage - 1)*page.selectPageNum}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.createTime*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>
+                    <span ng-if="item.isRelease == '0'">未发布</span>
+                    <span ng-if="item.isRelease == '1'">{{item.releaseTime*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                </td>
+                <td>
+                    <a style="margin-right: 15px;" class="btn btn-default" ng-click="modify(item)">编辑</a>
+                    <a class="btn btn-default" ng-click="releaseClick(item)">{{item.isRelease == '0'? '发布':'取消发布'}}</a>
+                </td>
+                <td><div class="all_sel" ng-click="oneSel(item.id)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-include="'include/page/page.html'"></div>
+</div>
+
+<div ng-include="'include/announceModal/announceModal.html'" ng-show="noticeModel.isInfoShow"></div>
+
+<div ng-include="'include/announceModal/upLoadPic.html'"></div>

@@ -1,0 +1,85 @@
+<div>
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 商品列表</div>
+        <div class="com_top_rg"><a class="btn btn-danger" ng-click="onClickDelMoreGoods()"><i class="md-clear"></i> 删除</a></div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-click="onClickAddGoods()"><i class="md-add"></i> 添加</a></div>
+    </div>
+
+    <div class="card-box m-t-20" style="border: 1px solid;">
+        <div class="classification-top">
+            <div class="block-level">分类</div>
+            <div class="block-level">数量</div>
+            <div class="block-level">税率</div>
+            <div class="block-level">排序</div>
+            <div class="block-level">操作</div>
+            <div class="block-level-5">
+                <div class="select-icon-head">
+                    <div class="all_sel" ng-click="selectAll()"><span ng-class="{true:'has_sel', false:'un_sel'}[goodsTypeModel.selectAll]"></span></div>
+                </div>
+                <div class="select-txt-head">全选</div>
+            </div>
+        </div>
+        <div class="classification-body">
+            <div class="parent-level" ng-repeat="item in goodsTypeModel.goodsTypeArr">
+                <div class="block-level head-style" style="border-left: none!important;">
+                    <div class="parent-head">
+                        <div class="toggle-btn"></div>
+                        <div class="classification-name" ng-bind="item.cat_name"></div>
+                    </div>
+                </div>
+                <div class="block-level" ng-bind="item.goods_num"></div>
+                <div class="block-level" ng-bind="item.taxrate"></div>
+                <div class="block-level" ng-bind="item.sort_order"></div>
+                <div class="block-level">
+                    <a class="btn btn-warning">修改</a>
+                </div>
+                <div class="block-level-5">
+                    <div class="select-icon">
+                        <div class="all_sel" ng-click="oneSel(item.goods_id)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div>
+                    </div>
+                </div>
+
+                <div class="firstchild-level {{goodsTypeModel.isHidden}}" ng-repeat="citem in item.child">
+                    <div class="block-level head-style">
+                        <div class="firstchild-head">
+                            <div class="firstchild-toggle-btn"></div>
+                            <div class="classification-name" ng-bind="citem.cat_name"></div>
+                        </div>
+                    </div>
+                    <div class="block-level" ng-bind="citem.goods_num"></div>
+                    <div class="block-level" ng-bind="citem.taxrate"></div>
+                    <div class="block-level" ng-bind="citem.sort_order"></div>
+                    <div class="block-level">
+                        <a class="btn btn-warning">修改</a>
+                    </div>
+                    <div class="block-level-5">
+                        <div class="select-icon">
+                            <div class="all_sel" ng-click="oneSel(item.goods_id)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="secondchild-level" ng-repeat="titem in citem.child">
+                        <div class="block-level head-style">
+                            <div class="secondchild-head">
+                                <div class="secondchild-toggle-btn"></div>
+                                <div class="classification-name" ng-bind="titem.cat_name"></div>
+                            </div>
+                        </div>
+                        <div class="block-level" ng-bind="titem.goods_num"></div>
+                        <div class="block-level" ng-bind="titem.taxrate"></div>
+                        <div class="block-level" ng-bind="titem.sort_order"></div>
+                        <div class="block-level">
+                            <a class="btn btn-warning">修改</a>
+                        </div>
+                        <div class="block-level-5">
+                            <div class="select-icon">
+                                <div class="all_sel" ng-click="oneSel(item.goods_id)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

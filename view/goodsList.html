@@ -1,0 +1,82 @@
+
+<div>
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 商品列表</div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-click="addNewGoods()">新增商品</a></div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-click="exportData()">导出列表</a></div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-href="{{import}}">导出全部列表</a></div>
+    </div>
+
+    <div class="card-box-search m-t-20 fix">
+        <div class="com_md_lf">
+            <select class="form-control" ng-model="optionModel.globalSel" ng-change="selGlobal(optionModel.globalSel)" ng-options="a.id as a.name for a in optionModel.globalArr">
+                <option value="">全球商品</option>
+            </select>
+        </div>
+        <div class="com_md_lf">
+            <select class="form-control" ng-model="optionModel.brandSel" ng-change="selBrand(optionModel.brandSel)" ng-options="a.id as a.name for a in optionModel.brandArr">
+                <option value="">所有品牌</option>
+            </select>
+        </div>
+        <div class="com_md_lf">
+            <select class="form-control" ng-model="optionModel.classifySel" ng-change="selClassify(optionModel.classifySel)" ng-options="a.id as a.name for a in optionModel.classifyArr">
+                <option value="">全部分类</option>
+            </select>
+        </div>
+        <div class="com_md_lf">
+            <select class="form-control" ng-model="optionModel.statusSel" ng-change="selStatus(optionModel.statusSel)" ng-options="a.id as a.name for a in optionModel.statusArr">
+                <option value="">商品状态</option>
+            </select>
+        </div>
+        <div class="com_md_lf"><input type="text" class="form-control" placeholder="请输入关键字查找" ng-model="goodsListModel.search" /></div>
+        <div class="com_md_lf"><a class="btn btn-default" ng-click="search()"><i class="md-search"></i> 搜索</a></div>
+        <div class="com_md_rt"><a class="btn btn-default" ng-click="handleDeal(handleSel)">确定</a></div>
+        <div class="com_md_rt">
+            <select class="form-control"ng-model="handleSel" ng-change="selHandle(handleSel)" ng-options="a.id as a.name for a in optionModel.handleAllArr">
+                <option value="">批量操作</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="card-box" id="exportGoodsTable">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>商品名称</td>
+                <td>编号</td>
+                <td>评价</td>
+                <td>价格</td>
+                <td>库存</td>
+                <td>货号</td>
+                <td>状态</td>
+                <td width="150px;">上架时间</td>
+                <td width="150px;">下架时间</td>
+                <td>操作</td>
+                <td><div class="all_sel">全选</div> <div class="all_sel" ng-click="allSel()"><span ng-class="{true:'has_sel', false:'un_sel'}[goodsListModel.selectAll]"></span></div></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in goodsListModel.modelArr" class="goods-status-{{item.status != '1'}}">
+                <td width="15%">
+                    <div style="display: inline-block" ng-style="item.style"><a class="btn btn-white" ng-click="switchCategory(item)"><i ng-class="{true : 'fa fa-plus-square-o', false : 'fa fa-minus-square-o'}[!item.isOpen]"></i></a></div>
+                    <div style="display: inline-block;" ng-bind="item.goodsName"></div>
+                </td>
+                <td ng-bind="item.goodsId"></td>
+                <td ng-bind="item.rank"></td>
+                <td ng-bind="item.price"></td>
+                <td><span class="j-stock-{{item.stock < 6}}">{{item.stock}}</span></td>
+                <td ng-bind="item.goodsSn"></td>
+                <td ><span ng-show="item.level == 0" ng-bind="item.status == '1'? '已上架':'已下架'"></span></td>
+                <td ><div ng-show="item.level == 0"><input style="background-color: transparent" readonly class="form-control" ng-model="item.onSaleTimeCopy" ng-blur="blurOnTime(item.goodsId, 1)" id="{{item.ontimeId}}" name="txtDate2" onclick="SetDate(this)"/></div></td>
+                <td ><div ng-show="item.level == 0"><input style="background-color: transparent" readonly class="form-control" ng-model="item.offSaleTimeCopy" ng-blur="blurOnTime(item.goodsId, 2)" id="{{item.offtimeId}}" name="txtDate2" onclick="SetDate(this)"/></div></td>
+                <td ><a ng-show="item.level == 0" class="btn btn-default" ng-click = "modifyGoods(item.goodsId)">编辑</a></td>
+                <td><div ng-show="item.level == 0" class="all_sel" ng-click="oneSel(item.goodsId)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-include="'include/page/page.html'"></div>
+</div>
+

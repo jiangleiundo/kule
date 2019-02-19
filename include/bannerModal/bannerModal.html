@@ -1,0 +1,112 @@
+<div id="bannerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" ng-bind="bannerModel.modalTitle"></h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">开始时间:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" style="background-color: transparent" readonly class="form-control" id="beginTime" ng-model="bannerModel.sTime" name="textDate" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">结束时间:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" style="background-color: transparent" readonly class="form-control" id="stopTime" ng-model="bannerModel.eTime" name="textDate" onclick="SetDate(this,'yyyy-MM-dd hh:mm:ss')"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">跳转类型:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <select class="form-control" ng-model="bannerModel.curType"  ng-options="a.id as a.name for a in bannerModel.optionArr"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="bannerModel.curType == '0'">
+                    <div class="col-md-2">
+                        <div class="line-h34">关联URL:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="bannerModel.bannerParams" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="bannerModel.curType == '2'">
+                    <div class="col-md-2">
+                        <div class="line-h34">关键字:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="bannerModel.bannerParams2" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" ng-show="bannerModel.curType == '1'">
+                    <div class="col-md-2">
+                        <div class="line-h34">跳转图:</div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <form method="post" enctype="multipart/form-data" id="Form_6" action="" class="upload-form">
+                                <div class="upload-img" style="border: 1px dashed #ddd; min-height: 100px; width: 300px; padding:10px;">
+                                    <img style="vertical-align: baseline; max-width: 280px;" ng-if="showPicUrl" ng-src="{{showPicUrl}}"/>
+                                </div>
+                                <div class="upload-btn">
+                                    <a class="btn btn-default">上传图片</a>
+                                    <input type="file" class="up_file" id="inupf_6" name="file"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">banner图:</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <form method="post" enctype="multipart/form-data" id="Form_7" action="" class="upload-form">
+                                <div class="upload-img" style="border: 1px dashed #ddd; min-height: 100px; width: 400px; padding:10px;">
+                                    <img style="vertical-align: baseline; max-width: 380px" ng-if="showPicUrl2" ng-src="{{showPicUrl2}}"/>
+                                </div>
+                                <div class="upload-btn">
+                                    <a class="btn btn-default">上传图片</a>
+                                    <input type="file" class="up_file" id="inupf_7" name="file"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="bannerSubmit(bannerModel.curType, bannerModel.bannerParams, bannerModel.bannerParams2, bannerModel.sTime, bannerModel.eTime)">提交</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->

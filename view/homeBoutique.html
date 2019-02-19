@@ -1,0 +1,29 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 精品推荐</div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>精品栏</td>
+                <td>图片</td>
+                <td width="50%">跳转参数</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in boutiqueModel.modelArr">
+                <td>栏位 {{$index + 1}}</td>
+                <td><img height="100px;" ng-src="{{item.boutiqueIcon}}" ng-if="item"/></td>
+                <td style="table-layout:fixed;word-break:break-all;">{{item.boutiqueUrl}}</td>
+                <td>
+                    <a class="btn btn-default" ng-if="item" ng-click="modifyBoutique(item.boutiqueId, item.boutiqueUrl, item.boutiqueIcon)">修改</a>
+                    <a class="btn btn-default" ng-if="!item" ng-click="addBoutique()">添加</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/bannerModal/boutiqueModal.html'"></div>

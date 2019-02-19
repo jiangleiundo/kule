@@ -1,0 +1,71 @@
+<div id="brandModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" ng-bind="brandModel.modalTitle"></h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">品牌名称:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="brandModel.brandName"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">品牌logo:</div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <form method="post" enctype="multipart/form-data" id="Form_2" action="" class="upload-form">
+                                <div class="upload-img" style="border: 1px dashed #ddd; min-height: 80px; width: 200px; padding:10px;">
+                                    <img style="vertical-align: baseline; max-height: 70px;" ng-if="showPicUrl" ng-src="{{showPicUrl}}"/>
+                                </div>
+                                <div class="upload-btn">
+                                    <a class="btn btn-default">上传logo图片</a>
+                                    <input type="file" class="up_file" id="inupf_2" name="file"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row" ng-show="brandModel.isAdd" ng-repeat="x in idList">
+                    <div class="col-md-2">
+                        <div class="line-h34" ng-show="$index == 0">添加商品:</div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" ng-model="x.id"/>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <a class="btn btn-default"  ng-show="$index != 0" ng-click="delID($index)"><i class="fa fa-minus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="brandModel.isAdd">
+                    <div class="col-md-2">
+                        <div class="line-h34"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <a class="btn btn-default" ng-click="addID()"><i class="fa fa-plus"></i> 添加商品</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="brandSubmit(brandModel.brandName, idList)">提交</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->

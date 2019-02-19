@@ -1,0 +1,59 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 优惠卷管理</div>
+</div>
+
+<div class="jl-search-con m-g-t-20 fix">
+    <div class="jl-select lt">
+        <select class="form-control" ng-model="optionSel" ng-change="changeStatus(optionSel)" ng-options="a.id as a.name for a in couponModel.optionStatusArr">
+            <option value="">优惠卷类型</option>
+        </select>
+    </div>
+    <div class="jl-select lt">
+        <select class="form-control" ng-model="optionSel2" ng-change="changeType(optionSel2)" ng-options="a.id as a.name for a in couponModel.optionTypeArr">
+            <option value="">使用状态</option>
+        </select>
+    </div>
+    <div class="jl-search-con-btn lt"><a ng-click="searchCoupon()" class="btn btn-default"><i class="fa fa-search"></i> 搜 索</a></div>
+    <div class="jl-search-con-btn rt"><a class="btn btn-danger" ng-click="delCoupon()"><i class="md-clear"></i> 删除</a></div>
+    <div class="jl-search-con-btn rt"><a class="btn btn-default" ng-click="addCoupon()"><i class="md-add"></i> 添加优惠卷</a></div>
+</div>
+
+<div class="card-box">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>ID</td>
+                <td>名称</td>
+                <td>优惠码</td>
+                <td>截止日期</td>
+                <td>使用日期</td>
+                <td>持有用户</td>
+                <td>操作</td>
+                <td><div class="all_sel">全选</div> <div class="all_sel" ng-click="allSel()"><span ng-class="{true:'has_sel', false:'un_sel'}[couponModel.selectAll]"></span></div></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in couponModel.modelArr">
+                <td>{{$index + 1 + (page.nowPage - 1) * page.selectPageNum}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.couponName}}</td>
+                <td>{{item.couponCode}}</td>
+                <td>{{item.endTime*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td>
+                    <div ng-if="item.useTime != '0'">{{item.useTime*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+                    <div ng-if="item.useTime == '0'">未使用</div>
+                </td>
+                <td id="{{item.nameId}}">{{item.nickName}}</td>
+                <td><a id="{{item.btnId}}" class="btn btn-default" ng-if="item.userId == '0'" ng-click="modify(item.id)">赠送</a></td>
+                <td><div class="all_sel" ng-click="oneSel(item.id)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/page/page.html'"></div>
+
+<div ng-include="'include/allActiveModal/couponModal.html'"></div>
+
+<div ng-include="'include/allActiveModal/addCouponModal.html'"></div>

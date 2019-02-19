@@ -1,0 +1,52 @@
+<div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" ng-bind="postModel.modalTitle"></h4>
+            </div>
+            <div class="modal-body" ng-show="!postModel.isShowSku">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">分类名称:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <form name="signForm" novalidate >
+                                <input  type="text" name="name" class="form-control" ng-model="postModel.attrName" ng-maxlength = 24 required maxlength="25"/>
+                                <div class="" ng-messages="signForm.name.$error" ng-if="signForm.name.$dirty">
+                                    <div style="height: 30px; line-height: 30px;" ng-message="maxlength">最多输入25个字符!</div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row" ng-show="postModel.attrTypeCopy == '2'">
+                    <div class="col-md-2">
+                        <div class="line-h34">图片:</div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <form method="post" enctype="multipart/form-data" id="Form_5" action="" class="upload-form">
+                                <div class="upload-img" style=" height: 202px; width: 202px; border: 1px dashed #ddd;">
+                                    <img height="200px" width="200px" style="border:none;" ng-if="PicUrl" ng-src="{{PicUrl}}"/>
+                                </div>
+                                <div class="upload-btn">
+                                    <a class="btn btn-default">上传图片</a>
+                                    <input type="file" class="up_file" id="inupf_5" name="file"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="postSubmit()">提交</button>
+            </div>
+        </div>
+    </div>
+</div><!-- /.modal -->

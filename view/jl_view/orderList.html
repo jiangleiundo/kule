@@ -1,0 +1,77 @@
+<div ng-show="!orderModel.isShowDetial">
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 订单列表</div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-href="{{import}}">导出全部订单</a></div>
+    </div>
+
+    <div class="jl-search-con m-g-t-20 fix">
+        <div class="jl-select lt">
+            <select class="form-control" ng-model="selModel.curSel" ng-options="a.id as a.name for a in selModelArr">
+                <option value="">选择订单状态</option>
+            </select>
+        </div>
+        <div class="lt jl-sel-time">
+            <span>从</span>
+            <div class="jl-sel-input">
+                <input style="background-color: transparent" readonly class="form-control" readonly id="startTime" name="txtDate2" onclick="SetDate(this)" placeholder="开始时间"/>
+            </div>
+            <span>到</span>
+            <div class="jl-sel-input">
+                <input style="background-color: transparent" readonly class="form-control" readonly id="endTime" name="textDate2" onclick="SetDate(this)" placeholder="截止时间"/>
+            </div>
+            <div class="jl-sel-input" style="margin-left: 30px;">
+                <input class="form-control" placeholder="请输入关键字搜索" ng-model="orderModel.searchName"/>
+            </div>
+        </div>
+        <div class="jl-search-con-btn lt"><a ng-click="searchOrder(selModel.curSel, orderModel.searchName)" class="btn btn-default"><i class="fa fa-search"></i> 搜 索</a></div>
+        <div class="jl-export-con-btn rt"><a class="btn btn-default" ng-click="exportData()">导出订单</a></div>
+    </div>
+
+    <div class="card-box" id="exportable">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>序号</td>
+                <td>订单号</td>
+                <td>下单用户</td>
+                <td>下单时间</td>
+                <td>收货信息</td>
+                <td>总金额</td>
+                <td>订单状态</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in orderModel.orderListArr">
+                <td ng-bind="$index + 1 + (page.nowPage - 1)*page.selectPageNum"></td>
+                <td ng-bind="item.orderNo"></td>
+                <td ng-bind="item.nickName"></td>
+                <td ng-bind="item.orderTime"></td>
+                <td ng-bind="item.addressInfo"></td>
+                <td><span ng-bind="item.price"></span><span style="font-size: 10px">(含运费{{item.carriage}}元)</span></td>
+                <td ng-bind="item.orderStatusCopy"></td>
+                <td>
+                    <div style="margin-bottom: 6px;"><a class="btn btn-default" ng-click="checkDetial(item.orderNo, $index)">查看详情</a></div>
+                    <div ng-show="item.orderStatus == '2'"><a class="btn btn-success" ng-click="deliverGoods(item.orderNo)">发货</a></div>
+                    <div ng-show="item.orderStatus == '6'"><a class="btn btn-warning" ng-click="refundModel(item.orderNo)">审核</a></div>
+                    <div ng-show="item.orderStatus == '8'"><a class="btn btn-danger" ng-click="payBack(item.orderNo)">退款</a></div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-include="'include/page/page.html'"></div>
+</div>
+
+<div ng-include="'include/orderModal/orderModal.html'"></div>
+
+<div ng-include="'include/vatModal/vatModal.html'"></div>
+<!--详情-->
+<div ng-include="'view/jl_view/orderDetials.html'" ng-show="orderModel.isShowDetial && orderModel.isShowInfo"></div>
+
+<!--发货-->
+<div ng-include="'view/jl_view/deliverGoods.html'" ng-show="orderModel.isShowDetial && orderModel.isShowDeliver"></div>
+
+<!--审核-->
+<div ng-include="'view/jl_view/returnRefund.html'" ng-show="orderModel.isShowDetial && orderModel.isRefund"></div>

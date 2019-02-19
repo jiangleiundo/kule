@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html ng-app="adminApp">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no"/>
+        <title>酷乐生活管理后台</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/ui_base.css" />
+		<link rel="stylesheet" href="css/header.css" />
+		<link rel="stylesheet" href="css/ui_btn.css" />
+		<link rel="stylesheet" href="css/ui_icons.css" />
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/font-awesome-amiation.css" />
+		<link rel="stylesheet" href="css/ui_content.css" />
+		<link rel="stylesheet" href="css/distributor.css" />
+        <link rel="stylesheet" href="css/order.css" />
+		<link rel="stylesheet" href="css/commenList.css" />
+		<link rel="stylesheet" href="css/postGoods.css" />
+        <link rel="stylesheet" href="css/classificationContent.css" />
+
+		<link  rel="stylesheet" href="plugIn/calendar/calendar.css"/>
+		<link rel="stylesheet" href="editor/themes/default/default.css"/>
+		<style>
+			.ke-icon-shopImg {
+		        background-position: 0 -496px;
+				width: 16px;
+				height: 16px;
+			}
+		</style>
+
+	</head>
+	<body>
+		<!--1 top-->
+		<div class="ui_top">
+			<div class="top_lf"></div>
+			<div class="top_rg">
+				<div class="menu"><i class="ion-navicon"></i></div>
+				<div class="logout_container">
+					<i class="ion-android-social-user"></i><span id="currentAdmin" class="m-g-l-5"></span><i class="ion-arrow-down-b m-g-l-5"></i>
+				</div>
+
+				<div class="logout-container-tips">
+					<i class="fa fa-bell" id="tipsFlash"></i><span class="m-g-l-5"></span><i class="ion-arrow-down-b m-g-l-5"></i>
+				</div>
+			</div>
+		</div>
+		<!--1 top end-->
+		
+		<!--logout-->
+		<div class="dropdown_menu">
+			<ul>
+				<li class="modPwd" id="modPwd2">
+                    <i class="ion-locked"></i><span class="m-g-l-10">修改密码</span>
+				</li>
+				<li class="dr_bt">
+					<i class="ion-trash-a"></i><span class="m-g-l-10">清除缓存</span>
+				</li>
+				<li id="logout">
+					<i class="ion-power"></i><span class="m-g-l-10">退出登录</span>
+				</li>
+				<span class="triangle_up"></span>
+			</ul>
+		</div>
+
+        <div class="dropdown-menu-tips" ng-controller="indexCtrl">
+            <ul>
+                <li ng-click="order(tipsModel.shipping)">
+                    <i style="width: 14px;" class="fa fa-file-text"></i><span class="m-g-l-10 j-tips">发货提醒</span><span class="m-g-l-10 j-num-{{tipsModel.shipping > 0}}">{{tipsModel.shipping}}</span>
+                </li>
+                <li ng-click="stock(tipsModel.stockNotEnough)">
+                    <i style="width: 14px;" class="fa fa-shopping-cart"></i><span class="m-g-l-10 j-tips">库存不足</span><span class="m-g-l-10 j-num-{{tipsModel.stockNotEnough > 0}}">{{tipsModel.stockNotEnough}}</span>
+                </li>
+                <li ng-click="vat(tipsModel.checkVat)">
+                    <i style="width: 14px;" class="fa fa-group"></i><span class="m-g-l-10 j-tips">增值税认证</span><span class="m-g-l-10 j-num-{{tipsModel.checkVat > 0}}">{{tipsModel.checkVat}}</span>
+                </li>
+                <li ui-sref="acountWithdraw">
+                    <i style="width: 14px;" class="fa fa-money"></i><span class="m-g-l-10 j-tips">提现管理</span><span class="m-g-l-10 j-num-{{tipsModel.checkWithdrawalApply > 0}}">{{tipsModel.checkWithdrawalApply}}</span>
+                </li>
+            </ul>
+        </div>
+		
+		<!--2 left-->
+		<div class="left_side">
+			<div class="currentAdmin">欢迎您，<span id="curAdmin"></span></div>
+
+			<div class="nav">
+
+				<div class="nav_act" style="display: block;"><a ui-sref="index_content"><i class="fa fa-home"></i><span class="m-g-l-20">主页</span></a></div>
+
+				<div class="nav_menu" id="home_11"><a ui-sref="adminGeneral"><i style="width: 14px;" class="fa fa-user"></i><span class="m-g-l-20">管理员</span><i class="icon-angle-right icon"></i></a></div>
+				<div class="nav_menu" id="home_1"><a><i style="width: 14px;" class="fa fa-user"></i><span class="m-g-l-20">管理员</span><i class="icon-angle-right icon"></i></a></div>
+                    <ul class="nav_content">
+                        <li class="levelPermiss" id="levelPermiss_101"><a ui-sref="admin"><i class="icon-caret-right"></i>  <span class="m-g-l-20">管理员管理</span></a></li>
+                        <li class="levelPermiss"  id="levelPermiss_102"><a ui-sref="log"><i class="icon-caret-right"></i>  <span class="m-g-l-20">日志</span></a></li>
+                    </ul>
+
+				<div class="nav_menu" id="home_2"><a><i style="width: 14px;" class="fa fa-shopping-cart"></i><span class="m-g-l-20">商品管理</span><i class="icon-angle-right icon"></i></a></div>
+                    <ul class="nav_content">
+                        <li class="levelPermiss"><a ui-sref="goodsClassification"><i class="icon-caret-right"></i>  <span class="m-g-l-20">商品分类管理</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="brandManage"><i class="icon-caret-right"></i>  <span class="m-g-l-20">品牌管理</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="goodsList"><i class="icon-caret-right"></i>  <span class="m-g-l-20">商品列表</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="goodsTag" ><i class="icon-caret-right"></i>  <span class="m-g-l-20">商品标签</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="recycleGoods" ><i class="icon-caret-right"></i>  <span class="m-g-l-20">商品回收站</span></a></li>
+                    </ul>
+
+				<div class="nav_menu" id="home_3"><a><i style="width: 14px;" class="fa fa-file-text"></i><span class="m-g-l-20">订单管理</span><i class="icon-angle-right icon"></i></a></div>
+                    <ul class="nav_content">
+                        <li class="levelPermiss"><a ui-sref="orderList"><i class="icon-caret-right"></i>  <span class="m-g-l-20">订单列表</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="orderSearch"><i class="icon-caret-right"></i>  <span class="m-g-l-20">订单搜索</span></a></li>
+                    </ul>
+
+				<div class="nav_menu" id="home_4"><a><i style="width: 14px;" class="fa fa-group"></i><span class="m-g-l-20">会员管理</span><i class="icon-angle-right icon"></i></a></div>
+                    <ul class="nav_content">
+                        <li class="levelPermiss"><a ui-sref="userList"><i class="icon-caret-right"></i>  <span class="m-g-l-20">会员列表</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="certificationVat"><i class="icon-caret-right"></i>  <span class="m-g-l-20">增值税认证</span></a></li>
+                    </ul>
+
+                <div class="nav_menu" id="home_5"><a><i style="width: 14px;" class="fa fa-bar-chart"></i><span class="m-g-l-20">统计管理</span><i class="icon-angle-right icon"></i></a></div>
+                    <ul class="nav_content">
+                        <li class="levelPermiss"><a ui-sref="goodsStatistics"><i class="icon-caret-right"></i>  <span class="m-g-l-20">商品统计</span></a></li>
+                    </ul>
+
+                <div class="nav_menu" id="home_6"><a><i style="width: 14px;" class="fa fa-home"></i><span class="m-g-l-20">首页管理</span><i class="icon-angle-right icon"></i></a></div>
+                    <ul class="nav_content">
+                        <li class="levelPermiss"><a ui-sref="homeBanner"><i class="icon-caret-right"></i>  <span class="m-g-l-20">banner管理</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="homeActive"><i class="icon-caret-right"></i>  <span class="m-g-l-20">活动管理</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="homeBoutique"><i class="icon-caret-right"></i>  <span class="m-g-l-20">精品位管理</span></a></li>
+                        <li class="levelPermiss"><a ui-sref="homeFloor"><i class="icon-caret-right"></i>  <span class="m-g-l-20">楼层管理</span></a></li>
+                    </ul>
+
+				<div class="nav_menu" id="home_7"><a><i style="width: 14px;" class="fa fa-black-tie"></i><span class="m-g-l-20">全场活动管理</span><i class="icon-angle-right icon"></i></a></div>
+					<ul class="nav_content">
+						<li class="levelPermiss"><a ui-sref="allActive"><i class="icon-caret-right"></i>  <span class="m-g-l-20">全场活动</span></a></li>
+						<li class="levelPermiss"><a ui-sref="coupon"><i class="icon-caret-right"></i>  <span class="m-g-l-20">优惠卷管理</span></a></li>
+
+					</ul>
+
+				<div class="nav_menu" id="home_8"><a><i style="width: 14px;" class="fa fa-money"></i><span class="m-g-l-20">提现管理</span><i class="icon-angle-right icon"></i></a></div>
+				<ul class="nav_content">
+					<li class="levelPermiss"><a ui-sref="acountWithdraw"><i class="icon-caret-right"></i>  <span class="m-g-l-20">申请列表</span></a></li>
+				</ul>
+
+				<div class="nav_menu" id="home_9"><a><i style="width: 14px;" class="fa fa-tty"></i><span class="m-g-l-20">消息管理</span><i class="icon-angle-right icon"></i></a></div>
+				<ul class="nav_content">
+					<li class="levelPermiss"><a ui-sref="msgManage"><i class="icon-caret-right"></i>  <span class="m-g-l-20">消息列表</span></a></li>
+				</ul>
+
+                <div class="nav_menu" id="home_10"><a><i style="width: 14px;" class="fa fa-commenting"></i><span class="m-g-l-20">公告管理</span><i class="icon-angle-right icon"></i></a></div>
+                <ul class="nav_content">
+                    <li class="levelPermiss"><a ui-sref="announce"><i class="icon-caret-right"></i>  <span class="m-g-l-20">公告列表</span></a></li>
+                </ul>
+
+			</div>
+		</div>
+		<!--2 left end-->
+		
+		<!--3 right-->
+		<div class="right_side" ui-view=""></div>
+		<!--3 right end-->
+
+	<!-- library-->
+	<script src="library/angular-1.3.0.js"></script>
+	<script src="library/jquery-1.11.3.min.js"></script>
+	<script src="library/angular-animate.js"></script>
+	<script src="library/angular-ui-router.js"></script>
+	<script src="library/angular-messages.min.js"></script>
+	<script src="library/bootstrap.min.js"></script>
+	<script src="library/ui-bootstrap-tpls-0.11.0.js"></script>
+
+	<!--富文本编辑器-->
+	<script charset="utf-8" src="editor/kindeditor-all-min.js"></script>
+	<script charset="utf-8" src="editor/lang/zh-CN.js"></script>
+
+	<!-- 提示和插件-->
+	<script src="package/home.js"></script>
+	<script src="config/config.js"></script>
+	<script src="data/data.js"></script>
+	<script src="package/errTip.js"></script>
+	<script src="common/common.js"></script>
+	<script src="route/routeController.js"></script>
+	<script src="plugIn/jquery.MyDigitClock.js" ></script>
+	<script src="plugIn/calendar/calendar.js" ></script>
+	<script src="include/page/pageController.js"></script>
+
+	<!-- 登录主页-修改密码-->
+	<script src="controller/indexContentController.js" ></script>
+	<script src="controller/indexCtrl.js" ></script>
+	<script src="controller/adminController.js"></script>
+	<script src="controller/adminGeneralCtrl.js"></script>
+	<script src="controller/modPwdCtrl.js"></script>
+
+	<!-- 商品管理-->
+	<script src="controller/goodsClassificationController.js"></script>
+	<script src="controller/brandManageController.js"></script>
+	<script src="controller/goodsTagCtrl.js"></script>
+	<script src="controller/goodsListCtrl.js"></script>
+	<script src="controller/postGoodsController.js"></script>
+	<script src="controller/recycleGoodsCtrl.js"></script>
+
+    <script src="controller/logController.js"></script>
+
+	<!-- 订单-->
+	<script src="controller/jl_controller/orderListCtrl.js"></script>
+    <script src="controller/jl_controller/orderSearchCtrl.js"></script>
+
+    <!-- 会员管理-->
+    <script src="controller/userListCtrl.js"></script>
+    <script src="controller/userInfoCtrl.js"></script>
+    <script src="controller/certificationVatCtrl.js"></script>
+
+    <!-- 商品统计-->
+    <script src="controller/goodsStatisticsCtrl.js"></script>
+
+    <!-- 首页管理-->
+    <script src="controller/homeBannerCtrl.js"></script>
+    <script src="controller/homeActiveCtrl.js"></script>
+    <script src="controller/homeBoutiqueCtrl.js"></script>
+    <script src="controller/homeFloorCtrl.js"></script>
+    <script src="controller/homeFloorInfoCtrl.js"></script>
+
+    <script src="controller/accountWithdrawCtrl.js"></script>
+
+
+	<!-- 全场活动-->
+    <script src="controller/allActiveCtrl.js"></script>
+    <script src="controller/couponCtrl.js"></script>
+
+    <!-- 消息管理-->
+    <script src="controller/msgManageCtrl.js"></script>
+
+    <!-- 公告-->
+    <script src="controller/announceCtrl.js"></script>
+
+	<!-- 导出excel-->
+    <script src="controller/jl_controller/Blob.js"></script>
+    <script src="controller/jl_controller/FileSaver.js"></script>
+
+	<!--图片上传 -->
+	<script src="plugIn/uploadfile/jquery.form.min.js"></script>
+	<script src="plugIn/uploadfile/uploadImages.js"></script>
+
+	<script>
+		var adminName = localStorage.getItem(strKey.KuserName);
+		$("#curAdmin").text(adminName);
+		
+        $("#modPwd2").on('click', function(){
+            $(".dropdown_menu").hide();
+            location.href = URL_CONST.MOD_PWD;
+        });
+	</script>
+	</body>
+</html>

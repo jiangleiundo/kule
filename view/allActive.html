@@ -1,0 +1,44 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 全场活动</div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>标题</td>
+                <td>开始时间</td>
+                <td>结束时间</td>
+                <td>力度设置</td>
+                <td>状态</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in activeModel.modelArr track by $index">
+                <td>{{item.activityName}}</td>
+                <td>{{item.sTime}}</td>
+                <td>{{item.eTime}}</td>
+                <td ng-if="item.id != '5'">
+                    <div ng-if="item.id != '4'"><span>{{item.conditionType}}</span><span>&nbsp;{{item.condition}}</span></div>
+                    <div>积分<span>&nbsp;{{item.intensity}}</span></div>
+                </td>
+                <td ng-if="item.id == '5'">
+                    <div>境内<span>&nbsp;{{item.domestic}}</span></div>
+                    <div>境外<span>&nbsp;{{item.overseas}}</span></div>
+                </td>
+                <td><span ng-if="!item.isOutOfTime">{{item.status == '1'? '开启中':'关闭中'}}</span><span ng-if="item.isOutOfTime" style="color: #f60;">已过期</span></td>
+                <td>
+                    <a class="btn btn-default" ng-if="item.id != '5'" ng-click="modify(item.id, item.sTime, item.eTime, item.condition, item.intensity)">修改</a>
+                    <a class="btn btn-default" ng-if="item.id == '5'" ng-click="modify(item.id, item.sTime, item.eTime, item.domestic, item.overseas)">修改</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span ng-if="!item.isOutOfTime">
+                        <a class="btn btn-default" ng-click="switchOpen(item.id, item.status)" ng-bind="item.status == '1'? '点击关闭':'点击开启'"></a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/allActiveModal/allActiveModal.html'"></div>

@@ -1,0 +1,31 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 消息列表</div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-click="addMsg()"><i class=" md-add"></i> 发送新消息</a></div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>操作人员</td>
+                <td>发送时间</td>
+                <td>消息标题</td>
+                <td width="40%">消息内容</td>
+                <td>消息类型</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in msgModel.modelArr">
+                <td>{{item.operater_name}}</td>
+                <td>{{item.send_time*1000 | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                <td style="table-layout:fixed;word-break:break-all;">{{item.title}}</td>
+                <td style="table-layout:fixed;word-break:break-all;">{{item.content}}</td>
+                <td>{{item.type == '1'? '站内信':'邮箱'}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/page/page.html'"></div>
+
+<div ng-include="'include/msgModal/msgModal.html'"></div>

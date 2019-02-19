@@ -1,0 +1,29 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 楼层列表</div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>楼层</td>
+            <td>名称</td>
+            <td>颜色</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in floorModel.modelArr">
+            <td>{{$index + 1}} 楼</td>
+            <td>{{item.floorName}}</td>
+            <td>{{item.colorValue}}</td>
+            <td>
+                <a class="btn btn-default" ng-if="item" ng-click="modifyFloor(item.floorId)">修改</a>
+                <a class="btn btn-default" ng-if="!item" ng-click="addFloor()">添加</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/homeModal/floorModal.html'"></div>

@@ -1,0 +1,64 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 发货</div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-click="deliverBack()"> 返回</a></div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+        <tr>
+            <td colspan="1">订单号：{{orderDetialModel.orderNo}}</td>
+            <td colspan="5">类型：{{orderDetialModel.goodsType == 1? "境内" : "境外"}}</td>
+        </tr>
+        <tr>
+            <td class="jl-w-20">商品信息</td>
+            <td class="jl-w-10">商品ID</td>
+            <td class="jl-w-10">单价</td>
+            <td class="jl-w-10">数量</td>
+            <td class="jl-w-10">单份重量</td>
+            <td class="jl-w-10">总价</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in orderGoodsModel">
+            <td>
+                <div style="display: inline-block"><img height="70px;" ng-src="{{item.goodImgCopy}}"/></div>
+                <span ng-bind="item.goodNameCopy"></span>
+            </td>
+            <td ng-bind="item.goodIdCopy"></td>
+            <td>{{item.goodPriceCopy}}元</td>
+            <td ng-bind="item.goodNumCopy"></td>
+            <td>{{item.goodWeightCopy}}千克</td>
+            <td>{{item.goodTotalPrice}}元</td>
+
+        </tr>
+        <tr>
+            <td colspan="4">运费：</td>
+            <td>{{orderDetialModel.weight}}千克</td>
+            <td>{{orderDetialModel.carriage}}元</td>
+        </tr>
+        <tr>
+            <td colspan="4">优惠活动：</td>
+            <td colspan="2" ng-bind=""></td>
+        </tr>
+        <tr>
+            <td colspan="4">合计：</td>
+            <td>{{orderDetialModel.weight}}千克</td>
+            <td>{{orderDetialModel.totalPrice}}元</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="fix m-g-t-30" style="height:34px; line-height: 34px;" ng-show="orderDetialModel.goodsType == 1">
+        <div class="lt" style="width: 100px;">物流方式：</div>
+        <div class="lt" ng-bind="orderDetialModel.deliveryTypeCopy"></div>
+    </div>
+    <div class="fix m-g-t-30" style="height:34px; line-height: 34px;" ng-show="orderDetialModel.goodsType == 1">
+        <div class="lt" style="width: 100px;">物流单号：</div>
+        <div class="lt" style="width:200px;"><input class="form-control" placeholder="请输入物流单号" ng-model="orderModel.logisticsNum"/></div>
+    </div>
+    <div class="fix m-g-t-30" style="height:34px; line-height: 34px;">
+        <div class="lt" style="width: 30px;"></div>
+        <div class="lt"><a class="btn btn-default" ng-click="deliverOnClick(orderDetialModel.orderNo, orderModel.logisticsNum, orderDetialModel.goodsType)">{{orderDetialModel.goodsType == 1? "点击发货" : "发送至海关"}}</a></div>
+    </div>
+</div>

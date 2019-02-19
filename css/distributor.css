@@ -1,0 +1,115 @@
+.brand_ul{
+	width: 498px;
+	border: 1px solid #ccc;
+	margin-left: 120px;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	display: none;
+}
+
+.brand_li{
+	border-bottom: 1px solid #CCCCCC;
+	padding-left: 20px; 
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.brand_li_Modal{
+	margin-top: -15px;
+	margin-left: 0 !important;
+	width: auto !important;
+}
+
+.brand_li_lf{
+	display: block;
+	float: left;
+}
+.brand_li_rg{
+	display: block;
+	float: right;
+}
+
+.select_btn{
+	margin: 20px 0;
+	overflow: hidden;
+}
+
+.select_btn a{
+	float: right;
+	margin: 0 20px 0 20px;
+}
+
+
+.supplier{
+	height: 60px;
+	background: #fff;
+	overflow: hidden;
+}
+.supplier_lf{
+	float: left;
+}
+.supplier_rg{
+	float: right;
+	line-height: 60px;
+}
+
+.supplier_tab{
+	height: 50px;
+    background: #fff;
+    position: relative;
+    /*border-bottom: 1px solid #eee;*/
+}
+.supplier_tab div{
+	float: left;
+	line-height: 50px;
+	text-align: center;
+	width: 200px;
+	cursor: pointer;
+	font-weight: 700;
+}
+.supplier_tab_active{
+	color: #5FBEAA;
+}
+.supplier_line{
+	position: absolute;
+	left: 0;
+	top: 48px;
+	height: 2px;
+	background: #5FBEAA;
+	width: 200px;
+}
+
+.permissions_container{
+	padding: 10px 5px;
+}
+
+.permissions_content{
+	overflow: hidden;
+}
+
+.permissions_content_lf{
+	float: left;
+	width: 10%;
+	text-align: center;
+}
+
+.permissions_content_rg{
+	float: left;
+	padding: 0 10px;
+	width: 90%;
+}
+
+.permissions_content_rg ul li{
+	max-width: 33%;
+	min-width: 33%;
+	float: left;
+	height: 20px;
+	line-height: 16px;
+	margin-bottom: 20px;
+}
+.sel_con{
+	float: left;
+    height: 16px;
+    padding-right: 5px;
+    line-height: 16px;
+}

@@ -1,0 +1,54 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 用户列表</div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-href="{{import}}">导出全部列表</a></div>
+</div>
+
+<div class="card-box-search m-t-20 fix">
+    <div class="com_md_lf">目前注册用户：<span> {{userListModel.registerNum}} </span>名,</div>
+    <div class="com_md_lf" style="margin-right: 30px;">认证用户：<span> {{userListModel.certificationNum}} </span>名</div>
+    <div class="com_md_lf"><input type="text" class="form-control" placeholder="请输入账号搜索" ng-model="userListModel.search" /></div>
+    <div class="com_md_lf"><a class="btn btn-default" ng-click="search(userListModel.search)"><i class="md-search"></i> 搜索</a></div>
+
+    <div class="com_md_rt"><a class="btn btn-danger" ng-click="deleteUser()">删除</a></div>
+    <div class="com_md_rt"><a class="btn btn-default" ng-click="toExcelUserList()">导出列表</a></div>
+</div>
+
+<div class="card-box" id="exportable4">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>序号</td>
+                <td>用户ID</td>
+                <td>注册账号</td>
+                <td>消费金额</td>
+                <td>账号余额</td>
+                <td>认证</td>
+                <td>最后消费日期</td>
+                <td>注册日期</td>
+                <td>操作</td>
+                <td><div class="all_sel">全选</div> <div class="all_sel" ng-click="allSel()"><span ng-class="{true:'has_sel', false:'un_sel'}[userListModel.selectAll]"></span></div></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in userListModel.modelArr">
+                <td ng-bind="$index + 1 + (page.nowPage - 1)*page.selectPageNum"></td>
+                <td ng-bind="item.userId"></td>
+                <td ng-bind="item.platformId"></td>
+                <td ng-bind="item.consumptionAmount"></td>
+                <td ng-bind="item.balance"></td>
+                <td ng-bind="item.isValid == false?'未认证':'已认证'"></td>
+                <td ng-bind="item.lastConsumeTime*1000 | date:'yyyy-MM-dd'"></td>
+                <td ng-bind="item.registerTime*1000 | date:'yyyy-MM-dd'"></td>
+                <td>
+                    <div style="display: inline-block; margin-right: 15px;"><a class="btn btn-default" ng-click="sendMsg(item.userId)">私信</a></div>
+                    <div style="display: inline-block;"><a class="btn btn-default" ng-click="checkInfo(item.userId)">查看</a></div>
+                </td>
+                <td><div class="all_sel" ng-click="oneSel(item.userId)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/page/page.html'"></div>
+
+<div ng-include="'include/userListModal/msgModal.html'"></div>

@@ -1,0 +1,49 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 增值税认证详情</div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-click="BackVat()"> 返回</a></div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <div class="vat-info fix">
+        <div class="vat-info-title lt">单位名称：</div>
+        <div class="lt">{{vatInfoModel.vatInfo.company}}</div>
+    </div>
+    <div class="vat-info fix">
+        <div class="vat-info-title lt">纳税人编号：</div>
+        <div class="lt">{{vatInfoModel.vatInfo.taxpayer}}</div>
+    </div>
+    <div class="vat-info fix">
+        <div class="vat-info-title lt">注册地址：</div>
+        <div class="lt">{{vatInfoModel.vatInfo.registerAddress}}</div>
+    </div>
+    <div class="vat-info fix">
+        <div class="vat-info-title lt">注册电话：</div>
+        <div class="lt">{{vatInfoModel.vatInfo.registerPhone}}</div>
+    </div>
+    <div class="vat-info fix">
+        <div class="vat-info-title lt">开户银行：</div>
+        <div class="lt">{{vatInfoModel.vatInfo.bankName}}</div>
+    </div>
+    <div class="vat-info fix">
+        <div class="vat-info-title lt">银行账号：</div>
+        <div class="lt">{{vatInfoModel.vatInfo.bankAccount}}</div>
+    </div>
+    <div class="vat-info fix">
+        <div class="vat-info-title lt">认证类型：</div>
+        <div class="lt">{{vatInfoModel.vatInfo.certificateType}}</div>
+    </div>
+    <div class="vat-info fix">
+        <div class="vat-info-title lt">资质凭证：</div>
+        <div class="lt vat-pics">
+            <span ng-repeat="item in vatInfoModel.vatInfo.vatImgList"><img height="200px;" ng-src="{{item}}"/></span>
+        </div>
+    </div>
+    <div class="vat-info fix" ng-show="vatInfoModel.vatInfo.checkStatus == '1'">
+        <div class="vat-info-title lt"></div>
+        <div class="lt vat-btn-m-r-50"><a class="btn btn-default" ng-click="yesForVat()">通过</a></div>
+        <div class="lt"><a class="btn btn-danger" ng-click="noForVat()">驳回</a></div>
+    </div>
+
+</div>
+
+<div ng-include="'include/vatModal/vatModal.html'"></div>

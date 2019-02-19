@@ -1,0 +1,49 @@
+
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 管理员日志</div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-click="toExcelLog()">导出日志</a></div>
+</div>
+
+<div class="jl-search-con m-g-t-20 fix">
+    <div class="jl-select lt">
+        <select class="form-control" ng-model="optionSel" ng-change="selCurOption(optionSel)" ng-options="a.id as a.name for a in selModelArr">
+            <option value="">选择管理员</option>
+        </select>
+    </div>
+    <div class="lt jl-sel-time">
+        <span>从</span>
+        <div class="jl-sel-input">
+            <input style="background-color: transparent" readonly class="form-control" id="startTime-log" name="txtDate2" onclick="SetDate(this)"/>
+        </div>
+        <span>到</span>
+        <div class="jl-sel-input">
+            <input style="background-color: transparent" readonly class="form-control" id="endTime-log" name="textDate2" onclick="SetDate(this)"/>
+        </div>
+    </div>
+    <div class="jl-search-con-btn lt"><a ng-click="search(optionSel)" class="btn btn-default"><i class="fa fa-search"></i> 搜 索</a></div>
+</div>
+
+<div class="card-box" id="exportable3">
+    <table class="table">
+        <thead>
+            <tr>
+                <td width="10%;">序号</td>
+                <td width="20%;">时间</td>
+                <td>操作人员</td>
+                <td>具体行为</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in logModel.modelArr">
+                <td ng-bind="$index + 1 + (page.nowPage - 1) * page.selectPageNum"></td>
+                <td ng-bind="item.createtime*1000 | date : 'yyyy-MM-dd HH:mm:ss'"></td>
+                <td><span>{{item.admin_username}}</span></td>
+                <td><span>{{item.operate_content}}</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/page/page.html'"></div>
+
+

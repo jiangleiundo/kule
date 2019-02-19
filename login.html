@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="renderer" content="webkit">
+		<title>酷乐生活管理后台</title>
+		<link rel="stylesheet" href="css/ui_base.css" />
+		<link rel="stylesheet" href="css/login.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="content">
+				<div class="title">
+					<div class="title_con">
+						<div class="title_con_rg">欢迎使用酷乐电商后台管理系统</div>
+					</div>
+				</div>
+				
+				<!--login form-->
+				<div class="login_container" onkeydown="keyDown(event)" id="mm">
+					<h3>用户登录</h3>
+					
+					<div class="err_tip"></div>
+					
+					<div class="login_form"><input type="text" placeholder="用户名" id="userName"/></div>
+					<div class="login_form"><input type="password" placeholder="密码" id="pwd"/></div>
+					 
+					<div class="rem_con">
+						<div class="rem_icon"><span class="un_sel"></span></div>
+						<div class="rem_txt">记住密码</div>
+					</div>
+					
+					<div class="btn_login">登录</div>
+				</div>
+				<!--login form-->
+			</div>
+		</div>
+	</body>
+	<script src="library/jquery-1.11.3.min.js"></script>
+	<script src="config/config.js"></script>
+	<script src="data/data.js"></script>
+	<script src="package/errTip.js"></script>
+	<script src="controller/loginController.js"></script>
+	<script>
+		var inputs=document.getElementById("mm").getElementsByTagName("input");
+		function keyDown(event) {
+			var focus = document.activeElement;
+			if(!document.getElementById("mm").contains(focus)) return;
+			var event = window.event || event;
+			var key = event.keyCode;
+			for(var i=0; i<inputs.length; i++)
+			{
+				if(inputs[i]===focus) break;
+			}
+			switch(key)
+			{
+				case 38:    if(i>0) inputs[i-1].focus();
+					break;
+				case 40:    if(i<inputs.length-1) inputs[i+1].focus();
+					break;
+			}
+		}
+	</script>
+</html>

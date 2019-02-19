@@ -1,0 +1,37 @@
+<div>
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 商品分类</div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-click="addGoodsClassifyOne()"><i class="md-add"></i> 添加大类</a></div>
+    </div>
+
+    <div class="card-box m-t-20">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>分类</td>
+                <td>商品数量</td>
+                <td>排序</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            <tr ng-repeat="item in goodsTypeModel.goodsTypeArr">
+                <td width="30%">
+                    <div style="display: inline-block" ng-style="item.style"><a class="btn btn-white" ng-click="switchCategory(item)"><i ng-class="{true : 'fa fa-plus-square-o', false : 'fa fa-minus-square-o'}[!item.isOpen]"></i></a></div>
+                    <div style="display: inline-block; margin-right: 10px;" ng-bind="item.cat_name"></div>
+                    <div style="background:#ddd; display: inline-block;"><img ng-if="item.cat_icon" height="30px;" width="30px;" ng-src="{{item.cat_icon}}"/></div>
+                </td>
+                <td ng-bind="item.goods_num"></td>
+                <td ng-bind="item.sort_order"></td>
+                <td>
+                    <a style="margin-right: 6%" class="btn btn-danger" ng-click = "delClassify(item.cat_id, item.goods_num)">删除</a>
+                    <a style="margin-right: 6%" class="btn btn-warning" ng-click = "modify(item.cat_id, item.level, item.cat_name, item.sort_order)">修改</a>
+                    <a class="btn btn-default" ng-hide="item.level == 2" ng-click = "addChildClassify(item.cat_id, item.level)">添加子类</a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div ng-include="'include/goodsClassification/goodsModalOne.html'"></div>
+</div>

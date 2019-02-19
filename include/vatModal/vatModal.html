@@ -1,0 +1,28 @@
+<div id="refuseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" ng-bind="refuseModel.modalTitle"></h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="line-h34">驳回理由:</div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <textarea  type="text" style="min-height: 188px;" ng-model="refuseModel.msgCon" class="form-control" placeholder="请输入文字内容"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="submitVat(refuseModel.msgCon)">提交</button>
+            </div>
+        </div>
+    </div>
+</div>

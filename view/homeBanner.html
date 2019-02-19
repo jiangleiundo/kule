@@ -1,0 +1,39 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> banner列表</div>
+    <div class="com_top_rg"><a class="btn btn-danger" ng-click="delBanner()">删除</a></div>
+    <div class="com_top_rg"><a class="btn btn-default" ng-click="addBanner()">新增banner</a></div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>活动栏</td>
+                <td width="30%;">banner图</td>
+                <td>跳转类型</td>
+                <td width="20%">跳转参数</td>
+                <td>开始时间</td>
+                <td>结束时间</td>
+                <td>操作</td>
+                <td><div class="all_sel">全选</div> <div class="all_sel" ng-click="allSel()"><span ng-class="{true:'has_sel', false:'un_sel'}[bannerModel.selectAll]"></span></div></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in bannerModel.modelArr">
+                <td>活动{{$index + 1}}</td>
+                <td><img height="50px;" ng-src="{{item.bannerIcon}}"/></td>
+                <td>{{item.bannerTypeCopy}}</td>
+                <td style="table-layout:fixed;word-break:break-all;" >
+                    <div ng-if="item.bannerType == 1"><img height="50px" ng-src="{{item.bannerParam}}"/></div>
+                    <div ng-if="item.bannerType != 1">{{item.bannerParam}}</div>
+                </td>
+                <td>{{item.startTime}}</td>
+                <td>{{item.endTime}}</td>
+                <td><a class="btn btn-default" ng-click="modifyBanner(item.bannerId, item.bannerType, item.startTime, item.endTime, item.bannerParam, item.bannerIcon)">修改</a></td>
+                <td><div class="all_sel" ng-click="oneSel(item.bannerId)"><span ng-class="{true:'has_sel', false:'un_sel'}[item.selected]"></span></div></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/bannerModal/bannerModal.html'"></div>

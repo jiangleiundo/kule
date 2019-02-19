@@ -1,0 +1,31 @@
+<div class="com_top">
+    <div class="com_top_lf"><i class=" md-apps"></i> 活动位列表</div>
+</div>
+
+<div class="card-box m-g-t-20">
+    <table class="table">
+        <thead>
+            <tr>
+                <td width="10%;">活动栏</td>
+                <td width="25%;">图片</td>
+                <td width="10%;">跳转类型</td>
+                <td width="35%;">跳转参数</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in activeModel.modelArr">
+                <td>栏位 {{$index + 1}}</td>
+                <td><img height="100px;" ng-src="{{item.activityIcon}}" ng-if="item"/></td>
+                <td>{{item.activityTypeCopy}}</td>
+                <td style="table-layout:fixed;word-break:break-all;">{{item.activityParam}}</td>
+                <td>
+                    <a class="btn btn-default" ng-if="item" ng-click="modifyActive(item.id, item.activityType, item.activityParam, item.activityIcon)">修改</a>
+                    <a class="btn btn-default" ng-if="!item" ng-click="addActive()">添加</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-include="'include/bannerModal/activeModal.html'"></div>

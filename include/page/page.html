@@ -1,0 +1,15 @@
+<div class="card-box m-t-20">
+    <div class="pIndex_item"><a class="btn btn-default" ng-click="jump()">确定</a></div>
+    <div class="pIndex_input"><input type="text" onkeyup="value=value.replace(/\D/g,'')" class="sel_input" ng-model="page.inputPage"/></div>
+    <div class="pIndex_txt">跳到</div>
+    <div class="pIndex_txt">条</div>
+    <div class="pIndex_input"><select class="sel_input" ng-change="change()" ng-model="page.selectPageNum" ng-options="x for x in pageNumSelections"></select></div>
+    <div class="pIndex_txt">每页显示</div>
+    <div class="pIndex_txt">共{{page.totalPage}}页</div>
+    <div class="pIndex_txt">第{{page.nowPage}}页</div>
+    <div class="pIndex_item"><a class="btn btn-default" ng-click="last()">尾页</a></div>
+    <div class="pIndex_item"><a class="btn btn-white" ng-click="next()">下一页</a></div>
+    <div class="pIndex_item"><a class="btn btn-white" ng-click="prev()">上一页</a></div>
+    <div class="pIndex_item"><a class="btn btn-default" ng-click="first()">首页</a></div>
+</div>
+

@@ -1,0 +1,193 @@
+.line-h34{
+    line-height: 34px;
+}
+
+.dis-inline{
+    display: inline-block;
+}
+
+.ver-align-2{
+    vertical-align: -2px;
+}
+.classification-top{
+    height: 40px;
+    line-height: 40px;
+    background: #eb4f38;
+    color: #fff;
+}
+.block-level{
+    width: 19%;
+    float: left;
+    text-align: center;
+    border: 1px solid;
+    margin-bottom: -1px;
+    margin-right: -1px;
+}
+.head-style{
+    border-style: none!important;
+    border-left: 1px solid!important;
+}
+
+.parent-level{
+    height: 50px;
+    line-height: 50px;
+}
+
+.firstchild-level{
+    height: 50px;
+    line-height: 50px;
+}
+
+.secondchild-level{
+    height: 50px;
+    line-height: 50px;
+}
+
+.parent-head{
+    width:100%;
+    height:52px;
+    text-align: center;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+}
+.toggle-btn{
+    width: 50px;
+    height: 50px;
+    float: left;
+    background: url("../images/unfold-plus.png") no-repeat;
+    background-size: 26px 26px;
+    background-position: 7px 12px;
+}
+.classification-name{
+    height:50px;
+    float: left;
+}
+.firstchild-head{
+    float: right;
+    width:85%;
+    height:52px;
+    text-align: center;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+}
+.firstchild-toggle-btn{
+    width: 50px;
+    height: 50px;
+    float: left;
+    background: url("../images/unfold-plus.png") no-repeat;
+    background-size: 26px 26px;
+    background-position: 7px 12px;
+}
+
+
+.secondchild-head{
+    float: right;
+    width:70%;
+    height:52px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+}
+.secondchild-toggle-btn{
+    width: 50px;
+    height: 50px;
+    float: left;
+    background: url("../images/fold-minus.png") no-repeat;
+    background-size: 26px 26px;
+    background-position: 7px 12px;
+}
+
+
+
+/************goodsList***********/
+.block-level-2{
+    width: 2%;
+    float: left;
+    height:40px;
+}
+.block-level-5{
+    width: 5%;
+    float: left;
+    text-align: center;
+    border: 1px solid;
+    margin-bottom: -1px;
+    margin-right: -1px;
+}
+.block-level-7{
+    width: 7%;
+    float: left;
+    text-align: center;
+    border: 1px solid;
+    margin-bottom: -1px;
+    margin-right: -1px;
+}
+.block-level-29{
+    width: 29%;
+    float: left;
+    text-align: center;
+    border: 1px solid;
+    margin-bottom: -1px;
+    margin-right: -1px;
+    overflow: hidden;
+    max-height: 52px;
+}
+.block-level-19{
+    width: 19%;
+    float: left;
+    text-align: center;
+    border: 1px solid;
+    margin-bottom: -1px;
+    margin-right: -1px;
+    overflow: hidden;
+    max-height: 52px;
+}
+.block-level-10{
+    width: 10%;
+    float: left;
+    text-align: center;
+    border: 1px solid;
+    margin-bottom: -1px;
+    margin-right: -1px;
+}
+
+.comment-icon-level{
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 30px;
+    /*background: #00FF00;*/
+    float: left;
+}
+.comment-icon{
+    width: 30px;
+    height:30px;
+    float: left;
+    background: url("../images/star.png") no-repeat;
+    background-size: 100% 100%;
+}
+.comment-rank{
+    margin-left: 50px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+}
+
+.select-icon{
+    width: 16px;
+    height: 16px;
+    margin:17px auto;
+}
+.select-icon-head{
+    float: left;
+    width: 16px;
+    height: 16px;
+    margin-top:13px;
+    margin-left:5px;
+}
+.select-txt-head{
+    padding-left: 5px;
+    line-height: 40px;
+    float: left;
+}

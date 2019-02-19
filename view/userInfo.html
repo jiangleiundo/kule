@@ -1,0 +1,147 @@
+
+<div ng-show="!userInfoModel.isShowOrderInfo">
+    <div class="com_top">
+        <div class="com_top_lf"><i class=" md-apps"></i> 用户详情</div>
+        <div class="com_top_rg"><a class="btn btn-default" ng-click="backToUserList()">返回</a></div>
+    </div>
+
+    <div class="card-box-u m-g-t-20 fix">
+        <div class="user-info-lt lt">
+            <img width="200px;" height="200px;" ng-src="{{headIcon}}"/>
+        </div>
+        <div class="user-info-rt">
+            <div class="user-info-box"><span style="width: 50px;">昵称：</span><span>{{userInfoObj.nickName}}</span></div>
+            <div class="user-info-box"><span style="width: 50px;">账号：</span><span>{{userInfoObj.username}}</span></div>
+            <div class="user-info-box"><span style="width: 60px;">用户ID：</span><span>{{userInfoObj.userId}}</span></div>
+            <div class="user-info-box"><span>最后上线：</span><span>{{userInfoObj.lastLoginTime*1000 | date:'yyyy-MM-dd'}}</span></div>
+            <div class="user-info-box"><span>消费金额：</span><span>{{userInfoObj.consumptionAmount}}</span></div>
+            <div class="user-info-box"><span>账号余额：</span><span>{{userInfoObj.balance}}</span><a ng-click="addChange(1)" ng-hide="isAdmin"><i class="fa fa-plus-square-o"></i></a></div>
+            <div class="user-info-box"><span>积分余额：</span><span>{{userInfoObj.integral}}</span><a ng-click="addChange(2)" ng-hide="isAdmin"><i class="fa fa-plus-square-o"></i></a></div>
+            <div class="user-info-box"><span>推广次数：</span><span>{{userInfoObj.promoteNum}}</span></div>
+            <div class="user-info-box"><span>注册日期：</span><span>{{userInfoObj.registerTime*1000 | date:'yyyy-MM-dd'}}</span></div>
+            <div class="user-info-box"><span>最后登录IP：</span><span>{{userInfoObj.lastLoginIp}}</span></div>
+        </div>
+    </div>
+
+    <div class="card-box-u m-g-t-20 fix">
+        <div class="user-real lt">
+            <div style="font-weight: 600;">实名认证</div>
+            <div>真实姓名：<span>{{realNameModel.realName}}</span></div>
+            <div>证件号：<span>{{realNameModel.idNumber}}</span></div>
+        </div>
+        <div class="user-real-img lt"><img ng-if="front" height="180px" ng-src="{{front}}"/></div>
+        <div class="user-real-img lt"><img ng-if="back" height="180px" ng-src="{{back}}"/></div>
+    </div>
+
+
+    <div class="jl-search-con m-g-t-20 fix">
+        <div class="jl-sel-btn lt"><a ng-class="{true: 'btn btn-default', false: 'btn btn-white'}[userInfoModel.isInvoice]" ng-click="switchInvoice()">普通发票</a></div>
+        <div class="jl-sel-btn lt"><a ng-class="{true: 'btn btn-default', false: 'btn btn-white'}[!userInfoModel.isInvoice]" ng-click="switchInvoice()">增值税专用发票</a></div>
+    </div>
+    <div class="card-box" ng-show="userInfoModel.isInvoice">
+        <table class="table">
+            <thead>
+            <tr>
+                <td style="background:#efefef;" colspan="4">普通发票</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="jl-w-10">发票抬头：</td>
+                <td class="jl-w-30" ng-bind="invoiceModel2.company"></td>
+                <td class="jl-w-10">发票明细：</td>
+                <td class="jl-w-30" ng-bind="invoiceModel2.receiptType"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-box" ng-show="!userInfoModel.isInvoice">
+        <table class="table">
+            <thead>
+            <tr>
+                <td style="background:#efefef;" colspan="4">增值税专用发票</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="jl-w-10">发票抬头：</td>
+                <td class="jl-w-30" ng-bind="invoiceModel.company"></td>
+                <td class="jl-w-10">发票明细：</td>
+                <td class="jl-w-30" ng-bind="invoiceModel.receiptType"></td>
+            </tr>
+            <tr>
+                <td class="jl-w-10">开户账号：</td>
+                <td class="jl-w-30" ng-bind="invoiceModel.bankAccount"></td>
+                <td class="jl-w-10">税号：</td>
+                <td class="jl-w-30" ng-bind="invoiceModel.taxpayer"></td>
+            </tr>
+            <tr>
+                <td>公司名称：</td>
+                <td ng-bind="invoiceModel.company"></td>
+                <td>电话：</td>
+                <td ng-bind="invoiceModel.registerPhone"></td>
+
+            </tr>
+            <tr>
+                <td>公司地址：</td>
+                <td ng-bind="invoiceModel.registerAddress"></td>
+                <td>开户行：</td>
+                <td ng-bind="invoiceModel.bankName"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card-box m-g-t-20">
+        <div style="font-weight: 600; line-height: 34px;">收货地址</div>
+        <div class="user-address" ng-repeat="item in addressArr">
+            <div class="user-address-box fix">
+                <div class="user-address-lt lt">收货人：<span>{{item.acceptName}}</span></div>
+                <div class="user-address-lt lt">手机：<span>{{item.mobile}}</span></div>
+            </div>
+            <div class="user-address-box" style="padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                收货地址：<span>{{item.provinceName + item.cityName + item.districtName + item.address}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-box m-g-t-20">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>序号</td>
+                <td>订单号</td>
+                <td>下单用户</td>
+                <td>下单时间</td>
+                <td>收货信息</td>
+                <td>总金额</td>
+                <td>实际支付</td>
+                <td>订单状态</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in userInfoModel.modelArr">
+                <td ng-bind="$index + 1 + (page.nowPage - 1)*page.selectPageNum"></td>
+                <td ng-bind="item.orderNo"></td>
+                <td ng-bind="item.nickName"></td>
+                <td ng-bind="item.orderTime"></td>
+                <td ng-bind="item.addressInfo"></td>
+                <td><span ng-bind="item.totalPrice"></span></td>
+                <td><span ng-bind="item.price"></span></td>
+                <td ng-bind="item.orderStatusCopy"></td>
+                <td><div style="margin-bottom: 6px;"><a class="btn btn-default" ng-click="checkOrderInfo(item.orderNo)">查看</a></div></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div ng-include="'include/page/page.html'"></div>
+
+    <div ng-include="'include/userListModal/userListModal.html'"></div>
+</div>
+
+
+<!--详情-->
+<div ng-include="'view/jl_view/orderDetials.html'" ng-show="userInfoModel.isShowOrderInfo"></div>
