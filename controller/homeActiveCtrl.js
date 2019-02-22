@@ -1,6 +1,3 @@
-/**
- * Created by Jack on 2016/7/15.
- */
 var homeActiveCtrl = {
     scope : null,
 

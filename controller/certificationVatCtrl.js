@@ -1,7 +1,3 @@
-/**
- * Created by jack on 2016/7/13.
- */
-
 var certificationVatCtrl = {
     scope : null,
 

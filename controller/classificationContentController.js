@@ -1,6 +1,3 @@
-/**
- * Created by CN on 2016/6/27.
- */
 var classificationContentCtrl = {
     scope : null,
     goodsTypeModel : {

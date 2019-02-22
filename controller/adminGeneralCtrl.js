@@ -1,7 +1,3 @@
-/**
- * Created by Jack on 2016/7/26.
- */
-
 routerApp.controller('adminGeneralCtrl', function($scope){
     adminGeneralCtrl.init($scope);
 });

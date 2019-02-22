@@ -1,6 +1,4 @@
-/**
- * Created by Jack on 2016/7/11.
- */
+
 var userListCtrl = {
     scope : null,
 

@@ -1,5 +1,4 @@
 
-
 var postGoodsCtrl = {
 
     scope: null,

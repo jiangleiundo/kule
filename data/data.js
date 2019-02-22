@@ -1,9 +1,3 @@
-/**
- * meeno.js
- * Created By: 梁勇
- * Data: 2015-08-06
- * Description: 提供基础方法和共用方法
- */
 
 var $data = {
 	/**

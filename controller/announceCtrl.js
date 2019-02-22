@@ -1,7 +1,4 @@
-/**
- * Created by jack on 2016/7/19.
- */
-//富文本编辑器
+ ///富文本编辑器
 var myEditor;
 
 //公告管理

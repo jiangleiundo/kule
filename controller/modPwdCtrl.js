@@ -1,6 +1,4 @@
-/**
- * Created by jack on 2016/7/12.
- */
+
 var modPwdCtrl = {
     scope : null,
 

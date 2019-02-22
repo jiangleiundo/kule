@@ -1,3 +1,4 @@
+
 var _CommonFuntion = {
     //删除
 	delListByIds : function(delids, delKey, api, delCallback){

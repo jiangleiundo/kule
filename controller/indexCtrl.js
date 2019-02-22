@@ -1,6 +1,3 @@
-/**
- * Created by Jack on 2016/7/23.
- */
 //消息提醒
 routerApp.controller('indexCtrl', function($scope){
     indexCtrl.init($scope);

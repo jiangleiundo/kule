@@ -1,6 +1,3 @@
-/**
- * Created by Jack on 2016/7/18.
- */
 var couponCtrl = {
     scope : null,
 

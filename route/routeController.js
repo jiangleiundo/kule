@@ -1,3 +1,4 @@
+
 var routerApp = angular.module('adminApp', ['ui.router', 'ngAnimate', 'ngMessages']);
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {

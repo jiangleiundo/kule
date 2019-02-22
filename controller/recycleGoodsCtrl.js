@@ -1,6 +1,4 @@
-/**
- * Created by Jack on 2016/7/3.
- */
+
 var recycleGoodsCtrl = {
     scope : null,
 
